@@ -1,0 +1,108 @@
+<RoadActivities>
+<RoadActivity>
+<Id>
+<![CDATA[ 9b40f6cca7d444199a40bd065e41f66a ]]>
+</Id>
+<Category>
+<![CDATA[ Roadwork - Planned ]]>
+</Category>
+<Status>Closed</Status>
+<Direction>NORTHBOUND</Direction>
+<Road>
+<![CDATA[ IR-75 ]]>
+</Road>
+<CountyCode>MOT</CountyCode>
+<DistrictNumber>7</DistrictNumber>
+<Latitude>39.759925</Latitude>
+<Longitude>-84.201193</Longitude>
+<ActivityStartDateTime>10/15/2012 9:00:00 AM</ActivityStartDateTime>
+<ActivityEndDateTime>12/30/2016 5:00:00 PM</ActivityEndDateTime>
+<ActivityCreationDateTime>10/5/2012 10:02:52 AM</ActivityCreationDateTime>
+<ActivityLastModifiedDateTime>10/5/2012 10:02:52 AM</ActivityLastModifiedDateTime>
+<StartMile/>
+<StartMileDescription>
+<![CDATA[ ramp to Third Street ]]>
+</StartMileDescription>
+<EndMile/>
+<EndMileDescription>
+<![CDATA[ ramp to First Street ]]>
+</EndMileDescription>
+<Description>
+<![CDATA[
+The ramps from I-75 northbound to First Street and Third Street will be closed beginning Monday, October 15th at 9 am. These will be 24 hour a day ramp closures. A newly constructed ramp is scheduled to open to motorists in the downtown area in December of 2016. These ramp closures are due to a contractor reconfiguring I-75 in that location. This is part of the final phase of the I-75 modernization project.
+]]>
+</Description>
+<DetourDescription>
+<![CDATA[ ]]>
+</DetourDescription>
+<Contact>
+<FirstName>
+<![CDATA[ MANDI ]]>
+</FirstName>
+<LastName>
+<![CDATA[ ABNER ]]>
+</LastName>
+<Email>
+<![CDATA[ mabner@dot.state.oh.us ]]>
+</Email>
+<Phone>(937) 4976820</Phone>
+<ProjectURL>
+<![CDATA[
+www.dot.state.oh.us/districts/D07/mediasite/Pages/Montgomery-Ramp-Closures-on-I-75-Northbound-------------------------------------.aspx
+]]>
+</ProjectURL>
+</Contact>
+</RoadActivity>
+<RoadActivity>
+<Id>
+<![CDATA[ 7d387cf5513249578c389848f73a81c1 ]]>
+</Id>
+<Category>
+<![CDATA[ Roadwork - Planned ]]>
+</Category>
+<Status>Restricted</Status>
+<Direction>EASTBOUND</Direction>
+<Road>
+<![CDATA[ US-35 ]]>
+</Road>
+<CountyCode>JAC</CountyCode>
+<DistrictNumber>9</DistrictNumber>
+<Latitude>39.109237</Latitude>
+<Longitude>-82.677602</Longitude>
+<ActivityStartDateTime>3/31/2014 8:00:00 AM</ActivityStartDateTime>
+<ActivityEndDateTime>10/11/2014 4:00:00 PM</ActivityEndDateTime>
+<ActivityCreationDateTime>3/28/2014 12:18:00 PM</ActivityCreationDateTime>
+<ActivityLastModifiedDateTime>3/28/2014 12:18:00 PM</ActivityLastModifiedDateTime>
+<StartMile>7.66</StartMile>
+<StartMileDescription>
+<![CDATA[ C.R. 21 (Oakland Road) ]]>
+</StartMileDescription>
+<EndMile>7.66</EndMile>
+<EndMileDescription>
+<![CDATA[ C.R. 71 (Lloyds Bridge Road) ]]>
+</EndMileDescription>
+<Description>
+<![CDATA[
+U.S. 35 East will be reduced to one lane (eastbound direction) for a rock fall/slide repair project just east of C.R. 71 (Lloyds Bridge Road). Crews will be reconstructing the rock slopes and excavating along the eastbound lanes, where traffic will be reduced to one, 12-foot lane. Westbound traffic should not be affected during the initial phase of construction.
+]]>
+</Description>
+<DetourDescription>
+<![CDATA[ ]]>
+</DetourDescription>
+<Contact>
+<FirstName>
+<![CDATA[ KATHLEEN ]]>
+</FirstName>
+<LastName>
+<![CDATA[ FULLER ]]>
+</LastName>
+<Email>
+<![CDATA[ kfuller@dot.state.oh.us ]]>
+</Email>
+<Phone>(740) 7748834</Phone>
+<ProjectURL>
+<![CDATA[ ]]>
+</ProjectURL>
+</Contact>
+</RoadActivity>
+</RoadActivities>

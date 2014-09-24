@@ -1,0 +1,56 @@
+<RoadActivities>
+<RoadActivity>
+<Id>
+<![CDATA[ 9b40f6cca7d444199a40bd065e41f66a ]]>
+</Id>
+<Category>
+<![CDATA[ Roadwork - Planned ]]>
+</Category>
+<Status>Closed</Status>
+<Direction>NORTHBOUND</Direction>
+<Road>
+<![CDATA[ IR-75 ]]>
+</Road>
+<CountyCode>MOT</CountyCode>
+<DistrictNumber>7</DistrictNumber>
+<Latitude>39.759925</Latitude>
+<Longitude>-84.201193</Longitude>
+<ActivityStartDateTime>10/15/2012 9:00:00 AM</ActivityStartDateTime>
+<ActivityEndDateTime>12/30/2016 5:00:00 PM</ActivityEndDateTime>
+<ActivityCreationDateTime>10/5/2012 10:02:52 AM</ActivityCreationDateTime>
+<ActivityLastModifiedDateTime>10/5/2012 10:02:52 AM</ActivityLastModifiedDateTime>
+<StartMile/>
+<StartMileDescription>
+<![CDATA[ ramp to Third Street ]]>
+</StartMileDescription>
+<EndMile/>
+<EndMileDescription>
+<![CDATA[ ramp to First Street ]]>
+</EndMileDescription>
+<Description>
+<![CDATA[
+The ramps from I-75 northbound to First Street and Third Street will be closed beginning Monday, October 15th at 9 am. These will be 24 hour a day ramp closures. A newly constructed ramp is scheduled to open to motorists in the downtown area in December of 2016. These ramp closures are due to a contractor reconfiguring I-75 in that location. This is part of the final phase of the I-75 modernization project.
+]]>
+</Description>
+<DetourDescription>
+<![CDATA[ ]]>
+</DetourDescription>
+<Contact>
+<FirstName>
+<![CDATA[ MANDI ]]>
+</FirstName>
+<LastName>
+<![CDATA[ ABNER ]]>
+</LastName>
+<Email>
+<![CDATA[ mabner@dot.state.oh.us ]]>
+</Email>
+<Phone>(937) 4976820</Phone>
+<ProjectURL>
+<![CDATA[
+www.dot.state.oh.us/districts/D07/mediasite/Pages/Montgomery-Ramp-Closures-on-I-75-Northbound-------------------------------------.aspx
+]]>
+</ProjectURL>
+</Contact>
+</RoadActivity>
+</RoadActivities>
