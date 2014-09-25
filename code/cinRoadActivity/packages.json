@@ -1,0 +1,10 @@
+{
+  xml2js: "0.4.4" 
+}
+
+//var parseString = Meteor.require('xml2js').parseString;
+// var xml2js = new XML2JS();
+var xml2js = Meteor.require('xml2js');
+// parseString(xml, function (err, result) {
+//  	console.dir(result);
+//  });
