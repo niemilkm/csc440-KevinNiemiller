@@ -1,5 +1,40 @@
 <template name="dashboard">
-	<div>
-		<button type="button" id="importData" class="importData btn btn-primary">Import Data</button>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="col-md-1">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<button type="button" id="importData" class="importData btn btn-primary">Import Data</button>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+			<div class="col-md-11">
+				<div class="row"></div>
+				<div class="row">
+					<table class="table table-striped">
+  					<tr>
+  						{{#each headers}}
+  							<th>{{this}}</th>
+  						{{/each}}
+  					</tr>
+  					{{#each roadActivity}}
+  						<tr>
+  							<td>{{Category}}</td>
+  							<td>{{Status}}</td>
+  							<td>{{Direction}}</td>
+  							<td>{{Road}}</td>
+  							<td>{{ActivityStartDateTime}}</td>
+  							<td>{{ActivityEndDateTime}}</td>
+  							<td>{{StartMile}}</td>
+  							<td>{{StartMileDescription}}</td>
+  							<td>{{EndMile}}</td>
+  							<td>{{EndMileDescription}}</td>
+  							<td>{{Description}}</td>
+  						</tr>
+  					{{/each}}
+					</table>
+				</div>
+			</div>
+		</div>
 	</div>
 </template>

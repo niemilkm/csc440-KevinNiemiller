@@ -1,4 +1,26 @@
 
+// Template.dashboard.headers= function()
+// {
+//   console.log("headers called");
+//   var header = ["Category", "Status", "Direction", "Road", "CountyCode", "DistrictNumber", "Latitude", "Longitude", "ActivityStartDateTime", "ActivityEndDateTime", "ActivityCreationDateTime", "ActivityLastModifiedDateTime", "StartMile", "StartMileDescription", "EndMile", "EndMileDescription", "Description", "DetourDescription"];
+//   return header;
+// };
+
+Template.dashboard.helpers(
+{
+  headers: function()
+  {
+    console.log("headers called");
+    var header = ["Category", "Status", "Direction", "Road", "Start Time", "End Time", "Start Mile", "Start Description", "End Mile", "End Description", "Description"];
+    return header;
+  },
+
+  roadActivity: function()
+  {
+    return RoadActivity.find({});
+  }
+});
+
 Template.dashboard.events =
   {
     'click button.importData': function()
