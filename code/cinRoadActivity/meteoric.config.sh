@@ -1,11 +1,11 @@
 # IP or URL of the server you want to deploy to
-APP_HOST=54.68.191.136
+APP_HOST=54.69.80.148
 
 # If you want a different ROOT_URL, when using a load balancer for instance, set it here
 #ROOT_URL=mycustom.url.com
 
 # Comment this if your host is not an EC2 instance
-EC2_PEM_FILE=~/.ssh/proxynet.pem
+EC2_PEM_FILE=~/Users/kevinniemiller/Documents/csms/2014fall/csc599_540/csc440-niemiller.pem
 
 # What's your project's Git repo?
 GIT_URL=git://github.com/niemilkm/csc440-KevinNiemiller.git
@@ -23,7 +23,7 @@ METEORITE=true
 APP_NAME=cinRoadActivity
 
 # If your app is not on the repository root, set this
-APP_PATH=.
+APP_PATH=code/cinRoadActivity/
 
 # If you would like to use a different branch, set it here
 GIT_BRANCH=master
