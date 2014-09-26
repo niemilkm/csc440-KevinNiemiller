@@ -5,7 +5,7 @@ APP_HOST=54.69.136.112
 #ROOT_URL=mycustom.url.com
 
 # Comment this if your host is not an EC2 instance
-EC2_PEM_FILE=~/Users/kevinniemiller/Documents/csms/2014fall/csc599_540/csc440-niemiller.pem
+EC2_PEM_FILE=~/Documents/csms/2014fall/csc599_540/csc440-niemiller.pem
 
 # What's your project's Git repo?
 GIT_URL=git://github.com/niemilkm/csc440-KevinNiemiller.git
