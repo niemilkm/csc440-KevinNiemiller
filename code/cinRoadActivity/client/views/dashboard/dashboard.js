@@ -11,7 +11,7 @@ Template.dashboard.helpers(
   headers: function()
   {
     console.log("headers called");
-    var header = ["Category", "Status", "Direction", "Road", "Start Time", "End Time", "Start Mile", "Start Description", "End Mile", "End Description", "Description"];
+    var header = ["Category", "Status", "Direction", "Road", "Start Time", "End Time", "Start Description", "End Description"];
     return header;
   },
 

@@ -1,40 +1,37 @@
 <template name="dashboard">
 	<div class="container-fluid">
-		<div class="row-fluid">
-			<div class="col-md-1">
-				<div class="col-md-4"></div>
-				<div class="col-md-4">
-					<button type="button" id="importData" class="importData btn btn-primary">Import Data</button>
-				</div>
-				<div class="col-md-4"></div>
-			</div>
-			<div class="col-md-11">
+		<div class="row">
+      <div class="col-md-1"></div>
+			<div class="col-md-10">
 				<div class="row"></div>
 				<div class="row">
-					<table class="table table-striped">
-  					<tr>
+					<table class="table">
+  					<tr class="border_bot">
   						{{#each headers}}
   							<th>{{this}}</th>
   						{{/each}}
   					</tr>
   					{{#each roadActivity}}
-  						<tr>
+              <tr>
   							<td>{{Category}}</td>
   							<td>{{Status}}</td>
   							<td>{{Direction}}</td>
   							<td>{{Road}}</td>
   							<td>{{ActivityStartDateTime}}</td>
   							<td>{{ActivityEndDateTime}}</td>
-  							<td>{{StartMile}}</td>
   							<td>{{StartMileDescription}}</td>
-  							<td>{{EndMile}}</td>
   							<td>{{EndMileDescription}}</td>
-  							<td>{{Description}}</td>
-  						</tr>
+              </tr>
+              <tr></tr>
+              <tr class="border_bottom spaceUnder">
+                <td></td>
+                <td colspan="9">{{Description}}</td>
+              </tr>
   					{{/each}}
 					</table>
 				</div>
 			</div>
+      <div class="col-md-1"></div>
 		</div>
 	</div>
 </template>
