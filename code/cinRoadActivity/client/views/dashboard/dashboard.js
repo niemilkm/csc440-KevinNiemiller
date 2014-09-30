@@ -1,11 +1,4 @@
 
-// Template.dashboard.headers= function()
-// {
-//   console.log("headers called");
-//   var header = ["Category", "Status", "Direction", "Road", "CountyCode", "DistrictNumber", "Latitude", "Longitude", "ActivityStartDateTime", "ActivityEndDateTime", "ActivityCreationDateTime", "ActivityLastModifiedDateTime", "StartMile", "StartMileDescription", "EndMile", "EndMileDescription", "Description", "DetourDescription"];
-//   return header;
-// };
-
 Template.dashboard.helpers(
 {
   headers: function()
@@ -18,6 +11,12 @@ Template.dashboard.helpers(
   roadActivity: function()
   {
     return RoadActivity.find({});
+  },
+
+  meteorUser: function()
+  {
+    console.log(Meteor.user().emails[0].address);
+    return Meteor.user().emails[0].address;
   }
 });
 
@@ -33,7 +32,8 @@ Template.dashboard.events =
       {
         xhttp=new ActiveXObject("Microsoft.XMLHTTP");
       }
-      xhttp.open("GET","http://localhost:3000/roadActivityPartial.xml",false);
+      //xhttp.open("GET","http://localhost:3000/roadActivityPartial.xml",false);
+      xhttp.open("GET","http://cinRoadActivity.meteor.com/roadActivityPartial.xml",false);
       xhttp.setRequestHeader('Content-Type', 'application/xml');
       xhttp.send();
       xmlDoc = xhttp.responseXML;

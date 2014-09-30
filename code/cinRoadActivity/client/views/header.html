@@ -12,9 +12,19 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/">About</a></li>
                 <li><a href="/">Contact</a></li>
-                <li><a href="/dashboard">Dashboard</a></li>
-                <li><a href="/sign-in">Sign In</a></li>
-                <li><a href="/sign-up">Sign Up</a></li>
+                {{#if currentUser}}
+                  <li><a href="/dashboard">Dashboard</a></li>
+                  <li><a href="/sign-out">Sign Out</a></li>
+                {{else}}
+                  <li><a href="/sign-in">Sign In</a></li>
+                  <li><a href="/sign-up">Sign Up</a></li>
+                {{/if}}
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                {{#if currentUser}}
+                  <li><a href="/">{{meteorUser}}</a></li>
+                  <li><a href="/"></a></li>
+                {{/if}}
               </ul>
             </div>
           </div>
