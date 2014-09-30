@@ -10,7 +10,12 @@ Template.dashboard.helpers(
 
   roadActivity: function()
   {
-    return RoadActivity.find({});
+    if (Session.get("filter") == "all" || Session.get("filter") == undefined || Session.get("filter") == null)
+      return RoadActivity.find({});
+    else
+    {
+      return RoadActivity.find({ActivityStartDateTime: "9/27/2014 5:00:00 AM"});
+    }
   }
 });
 
@@ -18,6 +23,7 @@ Template.dashboard.events =
   {
     'click button.importData': function()
     {
+      Session.set("filter", "all");
       if (window.XMLHttpRequest)
       {
         xhttp=new XMLHttpRequest();
@@ -26,9 +32,9 @@ Template.dashboard.events =
       {
         xhttp=new ActiveXObject("Microsoft.XMLHTTP");
       }
-      xhttp.open("GET","http://localhost:3000/roadActivity_27SEP14.xml",false);
+      //xhttp.open("GET","http://localhost:3000/roadActivity_29SEP14.xml",false);
       //xhttp.open("GET","http://cinRoadActivity.meteor.com/roadActivityPartial.xml",false);
-      //xhttp.open("GET","http://ec2-54-68-187-59.us-west-2.compute.amazonaws.com/roadActivityPartial.xml",false);
+      xhttp.open("GET","http://ec2-54-68-187-59.us-west-2.compute.amazonaws.com/roadActivity_29SEP14.xml",false);
       xhttp.setRequestHeader('Content-Type', 'application/xml');
       xhttp.send();
       xmlDoc = xhttp.responseXML;
@@ -57,5 +63,16 @@ Template.dashboard.events =
           Meteor.call("insert_data", dataValues);
         }
       }
+      console.log("dashboard importData complete");
+    },
+
+    'click button.filterToday': function()
+    {
+      Session.set("filter", "today");
+    },
+
+    'click button.allData': function()
+    {
+      Session.set("filter", "all");
     }
   };
