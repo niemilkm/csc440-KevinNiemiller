@@ -26,9 +26,9 @@ Template.dashboard.events =
       {
         xhttp=new ActiveXObject("Microsoft.XMLHTTP");
       }
-      //xhttp.open("GET","http://localhost:3000/roadActivityPartial.xml",false);
+      xhttp.open("GET","http://localhost:3000/roadActivity_27SEP14.xml",false);
       //xhttp.open("GET","http://cinRoadActivity.meteor.com/roadActivityPartial.xml",false);
-      xhttp.open("GET","http://ec2-54-68-187-59.us-west-2.compute.amazonaws.com/roadActivityPartial.xml",false);
+      //xhttp.open("GET","http://ec2-54-68-187-59.us-west-2.compute.amazonaws.com/roadActivityPartial.xml",false);
       xhttp.setRequestHeader('Content-Type', 'application/xml');
       xhttp.send();
       xmlDoc = xhttp.responseXML;
