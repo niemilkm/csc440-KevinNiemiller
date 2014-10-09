@@ -32,10 +32,12 @@ Template.dashboard.events =
       {
         xhttp=new ActiveXObject("Microsoft.XMLHTTP");
       }
+      xhttp.open("GET","http://www.buckeyetraffic.org/services/RoadActivity.aspx",false);
       //xhttp.open("GET","http://localhost:3000/roadActivity_29SEP14.xml",false);
       //xhttp.open("GET","http://cinRoadActivity.meteor.com/roadActivityPartial.xml",false);
-      xhttp.open("GET","http://ec2-54-68-187-59.us-west-2.compute.amazonaws.com/roadActivity_29SEP14.xml",false);
-      xhttp.setRequestHeader('Content-Type', 'application/xml');
+      //xhttp.open("GET","http://ec2-54-68-187-59.us-west-2.compute.amazonaws.com/roadActivity_29SEP14.xml",false);
+      xhttp.setRequestHeader('User-Agent','XMLHTTP/1.0');
+      //xhttp.setRequestHeader('Content-Type', 'application/xml');
       xhttp.send();
       xmlDoc = xhttp.responseXML;
       var Id=""; var Category=""; var Status=""; var Direction=""; var Road=""; var CountyCode=""; var DistrictNumber=-1; var Latitude=-1.1; var Longitude=-1.1; var ActivityStartDateTime=""; var ActivityEndDateTime=""; var ActivityCreationDateTime=""; var ActivityLastModifiedDateTime=""; var StartMile=-1; var StartMileDescription = ""; var EndMile=-1; var EndMileDescription=""; var Description=""; var DetourDescription="";

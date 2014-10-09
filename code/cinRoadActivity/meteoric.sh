@@ -120,29 +120,17 @@ sudo -E forever restart bundle/main.js || sudo -E forever start bundle/main.js;
 
 START="
 cd ~;
-wait;
 sudo npm install -g fibers;
-wait;
 sudo npm install -g underscore;
-wait;
 sudo npm install -g source-map-support;
-wait;
 sudo npm install -g semver;
 
-wait;
-
 export ROOT_URL="http://ec2-54-68-187-59.us-west-2.compute.amazonaws.com";
-wait;
 export BIND_IP="0.0.0.0";
-wait;
 export PORT="80";
-wait;
 export MONGO_URL="mongodb://localhost:27017/cinRoadActivity"; 
-wait;
 cd /home/meteor/cinRoadActivity/code;
-wait;
 sudo -E forever stopall;
-wait;
 sudo -E forever start bundle/main.js;
 "
 
