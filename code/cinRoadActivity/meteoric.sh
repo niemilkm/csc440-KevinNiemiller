@@ -120,10 +120,13 @@ sudo -E forever restart bundle/main.js || sudo -E forever start bundle/main.js;
 
 START="
 cd ~;
+wait;
 sudo npm install -g fibers;
 sudo npm install -g underscore;
 sudo npm install -g source-map-support;
 sudo npm install -g semver;
+
+wait;
 
 export ROOT_URL="http://ec2-54-68-187-59.us-west-2.compute.amazonaws.com";
 export BIND_IP="0.0.0.0";
