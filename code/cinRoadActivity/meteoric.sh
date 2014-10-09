@@ -107,6 +107,21 @@ if [ -n "$MAIL_URL" ]; then
 fi;
 export BIND_IP=$BIND_IP;
 export PORT=$PORT;
+wait
+cd ~
+sudo npm install -g fibers;
+sudo npm install -g underscore;
+sudo npm install -g source-map-support;
+sudo npm install -g semver;
+
+export ROOT_URL="http://ec2-54-68-187-59.us-west-2.compute.amazonaws.com";
+export BIND_IP="0.0.0.0";
+export PORT="80";
+export MONGO_URL="mongodb://localhost:27017/cinRoadActivity"; 
+cd /home/meteor/cinRoadActivity/code;
+sudo -E forever stopall;
+sudo -E forever start bundle/main.js;
+
 "
 
 if [ -n "$PRE_METEOR_START" ]; then
