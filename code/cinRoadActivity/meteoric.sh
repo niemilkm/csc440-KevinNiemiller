@@ -143,6 +143,7 @@ deploy)
 	;;
 start)
 	ssh $SSH_OPT $SSH_HOST $START
+	;;
 *)
 	cat <<ENDCAT
 meteoric [action]
