@@ -119,6 +119,7 @@ sudo -E forever restart bundle/main.js || sudo -E forever start bundle/main.js;
 "
 
 START="
+cd ~;
 sudo npm install -g fibers;
 sudo npm install -g underscore;
 sudo npm install -g source-map-support;
