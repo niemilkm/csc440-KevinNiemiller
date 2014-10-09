@@ -107,8 +107,18 @@ if [ -n "$MAIL_URL" ]; then
 fi;
 export BIND_IP=$BIND_IP;
 export PORT=$PORT;
-wait
-cd ~
+"
+
+if [ -n "$PRE_METEOR_START" ]; then
+    DEPLOY="$DEPLOY $PRE_METEOR_START"
+fi;
+
+DEPLOY="$DEPLOY
+echo Starting forever;
+sudo -E forever restart bundle/main.js || sudo -E forever start bundle/main.js;
+"
+
+START="
 sudo npm install -g fibers;
 sudo npm install -g underscore;
 sudo npm install -g source-map-support;
@@ -121,16 +131,6 @@ export MONGO_URL="mongodb://localhost:27017/cinRoadActivity";
 cd /home/meteor/cinRoadActivity/code;
 sudo -E forever stopall;
 sudo -E forever start bundle/main.js;
-
-"
-
-if [ -n "$PRE_METEOR_START" ]; then
-    DEPLOY="$DEPLOY $PRE_METEOR_START"
-fi;
-
-DEPLOY="$DEPLOY
-echo Starting forever;
-sudo -E forever restart bundle/main.js || sudo -E forever start bundle/main.js;
 "
 
 case "$1" in
@@ -140,6 +140,8 @@ setup)
 deploy)
 	ssh $SSH_OPT $SSH_HOST $DEPLOY
 	;;
+start)
+	ssh $SSH_OPT $SSH_HOST $START
 *)
 	cat <<ENDCAT
 meteoric [action]
