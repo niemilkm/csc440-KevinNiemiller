@@ -3,8 +3,7 @@ Template.dashboard.helpers(
 {
   headers: function()
   {
-    console.log("headers called");
-    var header = ["Category", "Status", "Direction", "Road", "Start Time", "End Time", "Start Description", "End Description"];
+    var header = ["Category", "Status", "Direction", "Road", "Start", "End", "Start Description", "End Description"];
     return header;
   },
 
@@ -23,7 +22,7 @@ Template.dashboard.events =
   {
     'click button.importData': function()
     {
-      // Session.set("filter", "all");
+      Session.set("filter", "all");
       // if (window.XMLHttpRequest)
       // {
       //   xhttp=new XMLHttpRequest();

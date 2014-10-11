@@ -37,15 +37,17 @@ Meteor.methods({
 				var children = xmlDoc.root().childNodes();
 				var child = null;
 				var identification = null;
+				var strSplit = null;
 				for(var i=0; i<children.length; i++)
 				{
 					child = children[i];
-					for (var j=0; j<19; j++)
+					for (var j=0; j<dataValues.length; j++)
 					{
 						dataValues[j] = child.get(dataKeywords[j]).text();
 					}
 
-					//console.log(dataValues[0]);
+					//console.log(dataValues[10]);
+					//console.log(strSplit[1]);
 
 					Meteor.call("updateInsert_data", dataValues);
 					
