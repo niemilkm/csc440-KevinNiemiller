@@ -11,21 +11,35 @@ Template.dashboard.helpers(
   {
     var filterCategory = Session.get("filterCategory");
     var filterStartDate = Session.get("filterStartDate");
-    var filterEndDate = Session.get("filterEndDate");
+    var filterEndDate = Date(Session.get("filterEndDate"));
     var filterCategory_bool = (filterCategory == undefined || filterCategory == null);
     var filterStartDate_bool = (filterStartDate == undefined || filterStartDate == null);
     var filterEndDate_bool = (filterEndDate == undefined || filterEndDate == null);
 
-    if (filterCategory_bool && filterStartDate_bool && filterEndDate_bool)
+    console.log("filterStartDate: " + filterStartDate);
+
+    if ((filterCategory_bool || filterCategory == "all") && filterStartDate_bool && filterEndDate_bool)
       return RoadActivity.find({});
     else if (filterCategory == "all" && !filterStartDate_bool && !filterEndDate_bool)
     {
       return RoadActivity.find({Category: filterCategory});
     }
-    else
+    else if (filterStartDate_bool || filterEndDate_bool)
     {
-      return RoadActivity.find({Category: filterCategory});
+      if (filterCategory == "all" || filterCategory_bool)
+        return RoadActivity.find({Category: filterCategory});
+      else if (filterEndDate_bool)
+      {
+        console.log(filterStartDate);
+        return RoadActivity.find({Category: filterCategory, ISODateStart: {$gte: filterStartDate}});
+      }
+      else if (filterStartDate_bool)
+        return RoadActivity.find({Category: filterCategory, ISODateEnd: {$lt: filterEndDate}});
+      else
+        return RoadActivity.find({Category: filterCategory, ISODateStart: {$gte: filterStartDate}, ISODateEnd: {$lt: filterEndDate}});
     }
+    else
+      return RoadActivity.find({});
   },
 
   eachCategory: function()
@@ -68,8 +82,10 @@ Template.dashboard.events =
     'click #startDatepicker': function(evt)
     {
       $( "#startDatepicker" ).datepicker({
-        onSelect: function(date) {
-          Session.set("filterStartDate", date);
+        onSelect: function() {
+          var startDate = $( "#startDatepicker" ).datepicker('getDate');
+          console.log(startDate);
+          Session.set("filterStartDate", startDate);
         }
       });
     },
@@ -77,8 +93,9 @@ Template.dashboard.events =
     'click #endDatepicker': function(evt)
     {
       $( "#endDatepicker" ).datepicker({
-        onSelect: function(date) {
-          Session.set("filterEndDate", date);
+        onSelect: function() {
+          var endDate = $( "#endDatepicker" ).datepicker('getDate');
+          Session.set("filterEndDate", endDate);
         }
       });
     }

@@ -10,8 +10,12 @@ Meteor.methods({
 	 	var activityEndTime;
 	 	for (var i=9; i<=10; i++)
 	 	{
+	 		if (i==9) //Save date in ISO format for filtering
+		 		isoDate_start = Date(dataValues[i]);
+		 	else
+		 		isoDate_end = Date(dataValues[i]);
 		 	strSplit = dataValues[i].split(" "); //ActivityStartDateTime
-		 	dataValues[i] = Date(strSplit[0]); //ActivityStartDateTime becomes ActivityStartDate
+		 	dataValues[i] = strSplit[0]; //ActivityStartDateTime becomes ActivityStartDate
 		 	if (strSplit[2] == "PM")
 		 	{
 		 		var strSplitToColon = strSplit[1].split(":");
@@ -27,11 +31,11 @@ Meteor.methods({
 		var count = RoadActivity.find({_id: dataValues[0]}).count();
 	 	if (count == 0)
 	 	{
-	 		RoadActivity.insert({_id: dataValues[0], Category: dataValues[1], Status: dataValues[2], Direction: dataValues[3], Road: dataValues[4], CountyCode: dataValues[5], DistrictNumber: dataValues[6], Latitude: dataValues[7], Longitude: dataValues[8], ActivityStartDate: dataValues[9], ActivityEndDate: dataValues[10], ActivityStartTime: activityStartTime, ActivityEndTime: activityEndTime, ActivityCreationDateTime: dataValues[11], ActivityLastModifiedDateTime: dataValues[12], StartMile: dataValues[13], StartMileDescription: dataValues[14], EndMile: dataValues[15], EndMileDescription: dataValues[16], Description: dataValues[17], DetourDescription: dataValues[18]});
+	 		RoadActivity.insert({_id: dataValues[0], Category: dataValues[1], Status: dataValues[2], Direction: dataValues[3], Road: dataValues[4], CountyCode: dataValues[5], DistrictNumber: dataValues[6], Latitude: dataValues[7], Longitude: dataValues[8], ActivityStartDate: dataValues[9], ActivityEndDate: dataValues[10], ActivityStartTime: activityStartTime, ActivityEndTime: activityEndTime, ActivityCreationDateTime: dataValues[11], ActivityLastModifiedDateTime: dataValues[12], StartMile: dataValues[13], StartMileDescription: dataValues[14], EndMile: dataValues[15], EndMileDescription: dataValues[16], Description: dataValues[17], DetourDescription: dataValues[18], ISODateStart: isoDate_start, ISODateEnd: isoDate_end});
 	 	}
 	 	else
 	 	{
-	 		RoadActivity.update({_id: dataValues[0]}, {$set: {Category: dataValues[1], Status: dataValues[2], Direction: dataValues[3], Road: dataValues[4], CountyCode: dataValues[5], DistrictNumber: dataValues[6], Latitude: dataValues[7], Longitude: dataValues[8], ActivityStartDate: dataValues[9], ActivityEndDate: dataValues[10], ActivityStartTime: activityStartTime, ActivityEndTime: activityEndTime, ActivityCreationDateTime: dataValues[11], ActivityLastModifiedDateTime: dataValues[12], StartMile: dataValues[13], StartMileDescription: dataValues[14], EndMile: dataValues[15], EndMileDescription: dataValues[16], Description: dataValues[17], DetourDescription: dataValues[18]}});
+	 		RoadActivity.update({_id: dataValues[0]}, {$set: {Category: dataValues[1], Status: dataValues[2], Direction: dataValues[3], Road: dataValues[4], CountyCode: dataValues[5], DistrictNumber: dataValues[6], Latitude: dataValues[7], Longitude: dataValues[8], ActivityStartDate: dataValues[9], ActivityEndDate: dataValues[10], ActivityStartTime: activityStartTime, ActivityEndTime: activityEndTime, ActivityCreationDateTime: dataValues[11], ActivityLastModifiedDateTime: dataValues[12], StartMile: dataValues[13], StartMileDescription: dataValues[14], EndMile: dataValues[15], EndMileDescription: dataValues[16], Description: dataValues[17], DetourDescription: dataValues[18], ISODateStart: isoDate_start, ISODateEnd: isoDate_end}});
 	 	}
 	 	//console.log("insert_data of Road Activity successful");
 	}
