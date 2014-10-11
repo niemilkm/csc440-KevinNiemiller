@@ -1,13 +1,3 @@
 {
-  xml2js: "0.4.4",
   libxmljs: "0.12.0"
 }
-
-//var parseString = Meteor.require('xml2js').parseString;
-// var xml2js = new XML2JS();
-var xml2js = Meteor.require('xml2js');
-//var libxmljs = Meteor.require('libxmljs');
-//var libxmljs = Meteor.require('libxmljs');
-// parseString(xml, function (err, result) {
-//  	console.dir(result);
-//  });

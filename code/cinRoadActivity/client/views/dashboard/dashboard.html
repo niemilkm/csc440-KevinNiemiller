@@ -5,14 +5,24 @@
       <div class="col-md-2">
         <button type="button" id="importData" class="importData btn btn-primary">Import Data</button>
       </div>
-      <div class="col-md-2">
-        <button type="button" id="filterToday" class="filterToday btn btn-primary">Filter Today</button>
-        <input type="text" class="span3" placeholder="enter test here"><label>Test</label>
+      <div class="dropdown col-md-2">
+        <label>Category</label>
+        <select id="categoryType">
+          <option value="all" selected="selected">All</option>
+          {{#each eachCategory}}
+            <option value="{{type}}">{{type}}</option>
+          {{/each}}
+        </select>
       </div>
       <div class="col-md-2">
-        <button type="button" id="allData" class="allData btn btn-primary">All Data</button>
+        <label>Start Date</label>
+        <input type="text" id="startDatepicker">
       </div>
-      <div class="col-md-5"></div>
+      <div class="col-md-2">
+        <label>End Date</label>
+        <input type="text" id="endDatepicker">
+      </div>
+      <div class="col-md-3"></div>
     </div>
     <div class="row"><br><br></div>
     <div class="row">
@@ -37,7 +47,7 @@
   							<td>{{StartMileDescription}}</td>
   							<td>{{EndMileDescription}}</td>
               </tr>
-              <tr></tr>
+              <tr><br></tr>
               <tr class="border_bottom spaceUnder">
                 <td></td>
                 <td colspan="9">{{Description}}</td>

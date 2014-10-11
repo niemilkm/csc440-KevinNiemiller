@@ -1,5 +1,7 @@
 {
   "packages": {
-    "xml2js": {}
+    "xml2js": {},
+    "jquery-ui": {},
+    "jquery-ui-bootstrap": {}
   }
 }

@@ -11,7 +11,7 @@ Meteor.methods({
 	 	for (var i=9; i<=10; i++)
 	 	{
 		 	strSplit = dataValues[i].split(" "); //ActivityStartDateTime
-		 	dataValues[i] = strSplit[0]; //ActivityStartDateTime becomes ActivityStartDate
+		 	dataValues[i] = Date(strSplit[0]); //ActivityStartDateTime becomes ActivityStartDate
 		 	if (strSplit[2] == "PM")
 		 	{
 		 		var strSplitToColon = strSplit[1].split(":");
@@ -19,9 +19,9 @@ Meteor.methods({
 		 		strSplit[1] = strToNumber_Hr.toString() + ":" + strSplitToColon[1] + ":" + strSplitToColon[2];
 		 	}
 		 	if (i==9)
-		 		activityStartTime = strSplit[1]
+		 		activityStartTime = strSplit[1];
 		 	else
-		 		activityEndTime = strSplit[1]
+		 		activityEndTime = strSplit[1];
 		}
 
 		var count = RoadActivity.find({_id: dataValues[0]}).count();
