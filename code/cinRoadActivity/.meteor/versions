@@ -8,7 +8,6 @@ autoupdate@1.0.5
 binary-heap@1.0.0
 blaze-tools@1.0.0
 blaze@1.0.3
-blocking@0.0.0
 callback-hook@1.0.0
 check@1.0.0
 cmather:handlebars-server@0.2.0
@@ -64,4 +63,3 @@ templating@1.0.4
 ui@1.0.0
 underscore@1.0.0
 webapp@1.0.2
-xml2js@0.0.0

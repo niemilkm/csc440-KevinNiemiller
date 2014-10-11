@@ -15,5 +15,3 @@ iron:router
 cmather:handlebars-server@0.2.0
 joshowens:accounts-entry
 http
-xml2js
-
