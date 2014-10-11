@@ -24,18 +24,52 @@ Meteor.methods({
 		//   console.log( "Data Loaded: " + data );
 		// });
 
+		var libxmljs = Meteor.npmRequire("libxmljs");
+
 		HTTP.call("POST", "http://www.buckeyetraffic.org/services/RoadActivity.aspx", function(error, result) {
 			if (!error) {
-				//console.log(result);
-				var status = result.getElementsByTagName("Status");
-				console.log(status);
+
+				var Id=""; var Category=""; var Status=""; var Direction=""; var Road=""; var CountyCode=""; var DistrictNumber=-1; var Latitude=-1.1; var Longitude=-1.1; var ActivityStartDateTime=""; var ActivityEndDateTime=""; var ActivityCreationDateTime=""; var ActivityLastModifiedDateTime=""; var StartMile=-1; var StartMileDescription = ""; var EndMile=-1; var EndMileDescription=""; var Description=""; var DetourDescription="";
+				var dataKeywords = ["Id", "Category", "Status", "Direction", "Road", "CountyCode", "DistrictNumber", "Latitude", "Longitude", "ActivityStartDateTime", "ActivityEndDateTime", "ActivityCreationDateTime", "ActivityLastModifiedDateTime", "StartMile", "StartMileDescription", "EndMile", "EndMileDescription", "Description", "DetourDescription"];
+      	var dataValues = [Id, Category, Status, Direction, Road, CountyCode, DistrictNumber, Latitude, Longitude, ActivityStartDateTime, ActivityEndDateTime, ActivityCreationDateTime, ActivityLastModifiedDateTime, StartMile, StartMileDescription, EndMile, EndMileDescription, Description, DetourDescription];
+
+				var xmlDoc = libxmljs.parseXmlString(result.content, {nocdata: true});
+				var children = xmlDoc.root().childNodes();
+				var child = null;
+				var identification = null;
+				for(var i=0; i<children.length; i++)
+				{
+					child = children[i];
+					for (var j=0; j<19; j++)
+					{
+						dataValues[j] = child.get(dataKeywords[j]).text();
+					}
+
+					//console.log(dataValues[0]);
+
+					Meteor.call("updateInsert_data", dataValues);
+					
+				}
+				console.log("updateInsert_data complete")
+				// var child = children[3];
+				// var status = child.get("//Id");
+				// console.log(child.text());
+
 			}
 			else
 				console.log("error");
 		});
 
-		var doc = libxml.parseXmlString(result);
-		console.log(doc);
+		//var libxmljs = Meteor.npmRequire("libxmljs");
+		// var libxmljsAPI = Meteor.npmRequire('libxmljs');
+  //     var libxmljs = new libxmljsAPI({
+  //         version: "0.12.0"
+  //     });
+
+    
+
+		//var doc = libxmljs.parseXmlString(result);
+		//console.log(doc);
 
     return true;
 
