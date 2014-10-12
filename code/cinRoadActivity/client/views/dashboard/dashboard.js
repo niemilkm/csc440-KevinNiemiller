@@ -11,40 +11,97 @@ Template.dashboard.helpers(
   {
     var filterCategory = Session.get("filterCategory");
     var filterStartDate = Session.get("filterStartDate");
-    var filterEndDate = Date(Session.get("filterEndDate"));
-    var filterCategory_bool = (filterCategory == undefined || filterCategory == null);
-    var filterStartDate_bool = (filterStartDate == undefined || filterStartDate == null);
-    var filterEndDate_bool = (filterEndDate == undefined || filterEndDate == null);
+    var filterEndDate = Session.get("filterEndDate");
+    var filterCategory_bool = !(filterCategory == undefined || filterCategory == null);
+    var filterStartDate_bool = !(filterStartDate == undefined || filterStartDate == null);
+    var filterEndDate_bool = !(filterEndDate == undefined || filterEndDate == null);
 
-    console.log("filterStartDate: " + filterStartDate);
+    console.log("filterCategory & filterStartDate & filterEndDate: " + filterCategory + " - " + filterStartDate + " - " + filterEndDate);
+    console.log("cat_bool, startDate_bool, endDate_bool:  " + filterCategory_bool + ", " + filterStartDate_bool + ", " + filterEndDate_bool);
+    console.log(filterStartDate instanceof Date);
+    console.log(filterEndDate instanceof Date);
 
-    if ((filterCategory_bool || filterCategory == "all") && filterStartDate_bool && filterEndDate_bool)
-      return RoadActivity.find({});
-    else if (filterCategory == "all" && !filterStartDate_bool && !filterEndDate_bool)
+    if (filterCategory == "all" || !filterCategory_bool)
     {
-      return RoadActivity.find({Category: filterCategory});
-    }
-    else if (filterStartDate_bool || filterEndDate_bool)
-    {
-      if (filterCategory == "all" || filterCategory_bool)
-        return RoadActivity.find({Category: filterCategory});
-      else if (filterEndDate_bool)
+      console.log("in all");
+      if (filterStartDate_bool && filterEndDate_bool)
       {
-        console.log(filterStartDate);
-        return RoadActivity.find({Category: filterCategory, ISODateStart: {$gte: filterStartDate}});
+        console.log("1");
+        return RoadActivity.find({ISODateStart: {$gte: filterStartDate}, ISODateEnd: {$lte: filterEndDate}});
       }
-      else if (filterStartDate_bool)
-        return RoadActivity.find({Category: filterCategory, ISODateEnd: {$lt: filterEndDate}});
+      else if (filterStartDate_bool && !filterEndDate_bool)
+      {
+        console.log("2");
+        return RoadActivity.find({ISODateStart: {$gte: filterStartDate}});
+      }
+      else if (!filterStartDate_bool && filterEndDate_bool)
+      {
+        console.log("3");
+        return RoadActivity.find({ISODateEnd: {$lte: filterEndDate}});
+      }
       else
-        return RoadActivity.find({Category: filterCategory, ISODateStart: {$gte: filterStartDate}, ISODateEnd: {$lt: filterEndDate}});
+      {
+        console.log("4");
+        return RoadActivity.find({});
+      }
     }
     else
-      return RoadActivity.find({});
+    {
+      console.log("in else");
+      if (filterStartDate_bool && filterEndDate_bool)
+      {
+        console.log("5");
+        return RoadActivity.find({Category: filterCategory, ISODateStart: {$gte: filterStartDate}, ISODateEnd: {$lt: filterEndDate}});
+      }
+      else if (filterStartDate_bool && !filterEndDate_bool)
+      {
+        console.log("6");
+        return RoadActivity.find({Category: filterCategory, ISODateStart: {$gte: filterStartDate}});
+      }
+      else if (!filterStartDate_bool && filterEndDate_bool)
+      {
+        console.log("7");
+        return RoadActivity.find({Category: filterCategory, ISODateEnd: {$lt: filterEndDate}});
+      }
+      else
+      {
+        console.log("8");
+        return RoadActivity.find({Category: filterCategory});
+      }
+    }
+
   },
 
   eachCategory: function()
   {
     return Categories.find({});
+  },
+
+  startDate: function()
+  {
+    var filterStartDate = Session.get("filterStartDate");
+    if (filterStartDate == null || filterStartDate == undefined)
+    {
+      return "Enter Start Date";
+    }
+    else
+    {
+      month = filterStartDate.getMonth() + 1;
+      return month + "/" + filterStartDate.getDate() + "/" + filterStartDate.getFullYear();
+    }
+  },
+
+  endDate: function()
+  {
+    var filterEndDate = Session.get("filterEndDate");
+    if (filterEndDate == null || filterEndDate == undefined)
+    {
+      return "Enter End Date";
+    }
+    else
+    {
+      return filterEndDate.getMonth() + "/" + filterEndDate.getDate() + "/" + filterEndDate.getFullYear();
+    }
   }
 
 });
@@ -86,7 +143,18 @@ Template.dashboard.events =
           var startDate = $( "#startDatepicker" ).datepicker('getDate');
           console.log(startDate);
           Session.set("filterStartDate", startDate);
-        }
+        },
+        showButtonPanel: true,
+        onClose: function(e) {
+          var ev = window.event;
+          if (ev.srcElement.innerHTML == 'Clear')
+          {
+            this.value = ""; 
+            Session.set("filterStartDate", null);
+          }
+        },
+         closeText: 'Clear',
+         buttonText: ''
       });
     },
 
@@ -96,7 +164,19 @@ Template.dashboard.events =
         onSelect: function() {
           var endDate = $( "#endDatepicker" ).datepicker('getDate');
           Session.set("filterEndDate", endDate);
-        }
+          console.log(endDate);
+        },
+        showButtonPanel: true,
+        onClose: function(e) {
+          var ev = window.event;
+          if (ev.srcElement.innerHTML == 'Clear')
+          {
+            this.value = ""; 
+            Session.set("filterEndDate", undefined);
+          }
+        },
+         closeText: 'Clear',
+         buttonText: ''
       });
     }
 

@@ -11,9 +11,9 @@ Meteor.methods({
 	 	for (var i=9; i<=10; i++)
 	 	{
 	 		if (i==9) //Save date in ISO format for filtering
-		 		isoDate_start = Date(dataValues[i]);
+		 		isoDate_start = new Date(dataValues[i]);
 		 	else
-		 		isoDate_end = Date(dataValues[i]);
+		 		isoDate_end = new Date(dataValues[i]);
 		 	strSplit = dataValues[i].split(" "); //ActivityStartDateTime
 		 	dataValues[i] = strSplit[0]; //ActivityStartDateTime becomes ActivityStartDate
 		 	if (strSplit[2] == "PM")
