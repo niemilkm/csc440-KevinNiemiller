@@ -1,5 +1,5 @@
 # IP or URL of the server you want to deploy to
-APP_HOST=ec2-54-68-187-59.us-west-2.compute.amazonaws.com
+APP_HOST=ec2-54-68-136-133.us-west-2.compute.amazonaws.com/
 
 # If you want a different ROOT_URL, when using a load balancer for instance, set it here
 #ROOT_URL=mycustom.url.com
