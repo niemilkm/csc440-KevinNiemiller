@@ -23,11 +23,8 @@ Meteor.methods({
 		// $_get( "http://www.buckeyetraffic.org/services/RoadActivity.aspx", function( data ) {
 		//   console.log( "Data Loaded: " + data );
 		// });
-		console.log("before Meteor.npmRequire");
 		var libxmljs = Meteor.npmRequire("libxmljs");
-		console.log("before Http.call");
 		HTTP.call("POST", "http://www.buckeyetraffic.org/services/RoadActivity.aspx", function(error, result) {
-			console.log("after Http.call");
 			if (!error) {
 
 				var Id=""; var Category=""; var Status=""; var Direction=""; var Road=""; var CountyCode=""; var DistrictNumber=-1; var Latitude=-1.1; var Longitude=-1.1; var ActivityStartDateTime=""; var ActivityEndDateTime=""; var ActivityCreationDateTime=""; var ActivityLastModifiedDateTime=""; var StartMile=-1; var StartMileDescription = ""; var EndMile=-1; var EndMileDescription=""; var Description=""; var DetourDescription="";
