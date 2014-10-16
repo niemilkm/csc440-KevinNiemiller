@@ -113,7 +113,7 @@ Template.dashboard.events =
       Session.set("filterCategory", "all");
       Meteor.call("importData", function(error, result){
         if (error)
-          console.log("error in importData");
+          console.log("error in importData: " + error);
         else
           console.log("importData complete");
       });
