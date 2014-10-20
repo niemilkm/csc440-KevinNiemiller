@@ -81,7 +81,7 @@ if [ -z "$GIT_BRANCH" ]; then
 	GIT_BRANCH="master"
 fi
 
-DEPLOY=<<HERE
+DEPLOY="
 cd $APP_DIR;
 cd $APP_NAME;
 echo Updating codebase;
@@ -107,7 +107,7 @@ if [ -n "$MAIL_URL" ]; then
 fi;
 export BIND_IP=$BIND_IP;
 export PORT=$PORT;
-HERE
+"
 
 if [ -n "$PRE_METEOR_START" ]; then
     DEPLOY="$DEPLOY $PRE_METEOR_START"
@@ -118,7 +118,7 @@ echo Starting forever;
 sudo -E forever restart bundle/main.js || sudo -E forever start bundle/main.js;
 "
 
-START=<<EOF
+START="
 cd ~;
 sudo npm install -g fibers;
 sudo npm install -g underscore;
@@ -132,7 +132,7 @@ export MONGO_URL="mongodb://localhost:27017/cinRoadActivity";
 cd /home/meteor/cinRoadActivity/code;
 sudo -E forever stopall;
 sudo -E forever start bundle/main.js;
-EOF
+"
 
 case "$1" in
 setup)
