@@ -81,7 +81,7 @@ if [ -z "$GIT_BRANCH" ]; then
 	GIT_BRANCH="master"
 fi
 
-DEPLOY=<<EOF
+DEPLOY=<<HERE
 cd $APP_DIR;
 cd $APP_NAME;
 echo Updating codebase;
@@ -107,7 +107,7 @@ if [ -n "$MAIL_URL" ]; then
 fi;
 export BIND_IP=$BIND_IP;
 export PORT=$PORT;
-EOF
+HERE
 
 if [ -n "$PRE_METEOR_START" ]; then
     DEPLOY="$DEPLOY $PRE_METEOR_START"
