@@ -56,7 +56,7 @@ fi
 
 
 
-SETUP="
+SETUP=<<EOF
 sudo apt-get install software-properties-common;
 sudo add-apt-repository ppa:chris-lea/node.js;
 sudo apt-get -qq update;
@@ -70,7 +70,7 @@ sudo mkdir -p $APP_DIR;
 cd $APP_DIR;
 pwd;
 sudo git clone $GIT_URL $APP_NAME;
-"
+EOF
 
 if [ -z "$APP_PATH" ]; then
 	APP_PATH="."
@@ -81,7 +81,7 @@ if [ -z "$GIT_BRANCH" ]; then
 	GIT_BRANCH="master"
 fi
 
-DEPLOY="
+DEPLOY=<<EOF
 cd $APP_DIR;
 cd $APP_NAME;
 echo Updating codebase;
@@ -107,7 +107,7 @@ if [ -n "$MAIL_URL" ]; then
 fi;
 export BIND_IP=$BIND_IP;
 export PORT=$PORT;
-"
+EOF
 
 if [ -n "$PRE_METEOR_START" ]; then
     DEPLOY="$DEPLOY $PRE_METEOR_START"
@@ -118,7 +118,7 @@ echo Starting forever;
 sudo -E forever restart bundle/main.js || sudo -E forever start bundle/main.js;
 "
 
-START="
+START=<<EOF
 cd ~;
 sudo npm install -g fibers;
 sudo npm install -g underscore;
@@ -132,7 +132,7 @@ export MONGO_URL="mongodb://localhost:27017/cinRoadActivity";
 cd /home/meteor/cinRoadActivity/code;
 sudo -E forever stopall;
 sudo -E forever start bundle/main.js;
-"
+EOF
 
 case "$1" in
 setup)
