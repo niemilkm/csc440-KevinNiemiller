@@ -152,6 +152,7 @@ Available actions:
 
 setup   - Install a meteor environment on a fresh Ubuntu server
 deploy  - Deploy the app to the server
+start   - Start app
 ENDCAT
 	;;
 esac
