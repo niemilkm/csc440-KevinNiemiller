@@ -117,6 +117,7 @@ fi;
 DEPLOY="$DEPLOY
 echo Starting forever;
 sudo -E forever restart bundle/main.js || sudo -E forever start bundle/main.js;
+cd ~;
 sudo npm install -g fibers;
 sudo npm install -g underscore;
 sudo npm install -g source-map-support;
@@ -132,6 +133,7 @@ sudo -E forever start bundle/main.js;
 "
 
 START=<<EOF
+cd ~;
 sudo npm install -g fibers;
 sudo npm install -g underscore;
 sudo npm install -g source-map-support;
