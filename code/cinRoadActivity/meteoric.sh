@@ -54,6 +54,14 @@ else
 	SSH_HOST="ubuntu@$APP_HOST" SSH_OPT="-i $EC2_PEM_FILE"
 fi
 
+if [ -z "$APP_PATH" ]; then
+	APP_PATH="."
+fi
+
+
+if [ -z "$GIT_BRANCH" ]; then
+	GIT_BRANCH="master"
+fi
 
 
 SETUP=<<EOF
@@ -72,14 +80,7 @@ pwd;
 sudo git clone $GIT_URL $APP_NAME;
 EOF
 
-if [ -z "$APP_PATH" ]; then
-	APP_PATH="."
-fi
 
-
-if [ -z "$GIT_BRANCH" ]; then
-	GIT_BRANCH="master"
-fi
 
 DEPLOY=<<EOF
 cd $APP_DIR;
@@ -107,19 +108,6 @@ if [ -n "$MAIL_URL" ]; then
 fi;
 export BIND_IP=$BIND_IP;
 export PORT=$PORT;
-cd ~;
-sudo npm install -g fibers;
-sudo npm install -g underscore;
-sudo npm install -g source-map-support;
-sudo npm install -g semver;
-
-export ROOT_URL="http://ec2-54-68-136-133.us-west-2.compute.amazonaws.com/";
-export BIND_IP="0.0.0.0";
-export PORT="80";
-export MONGO_URL="mongodb://localhost:27017/cinRoadActivity"; 
-cd /home/meteor/cinRoadActivity/code;
-sudo -E forever stopall;
-sudo -E forever start bundle/main.js;
 EOF
 
 if [ -n "$PRE_METEOR_START" ]; then
@@ -132,7 +120,6 @@ sudo -E forever restart bundle/main.js || sudo -E forever start bundle/main.js;
 "
 
 START=<<EOF
-cd ~;
 sudo npm install -g fibers;
 sudo npm install -g underscore;
 sudo npm install -g source-map-support;
@@ -143,8 +130,8 @@ export BIND_IP="0.0.0.0";
 export PORT="80";
 export MONGO_URL="mongodb://localhost:27017/cinRoadActivity"; 
 cd /home/meteor/cinRoadActivity/code;
-sudo -E forever stopall;
-sudo -E forever start bundle/main.js;
+sudo forever stopall;
+sudo forever start bundle/main.js;
 EOF
 
 case "$1" in
