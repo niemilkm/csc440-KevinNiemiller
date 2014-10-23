@@ -156,7 +156,8 @@ deploy)
 	ssh $SSH_OPT $SSH_HOST $DEPLOY
 	;;
 start)
-	ssh $SSH_OPT $SSH_HOST $START
+  scp $SSH_OPT start.sh $SSH_HOST
+	ssh $SSH_OPT -o RequestTTY=force $SSH_HOST "sh start.sh"
 	;;
 *)
 	cat <<ENDCAT
