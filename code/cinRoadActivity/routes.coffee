@@ -5,6 +5,9 @@ Router.map ->
   @route 'dashboard',
     path: '/dashboard'
 
+  @route 'roadsTravelled',
+    path: '/roadsTravelled'
+
   @route 'notFound',
     path: '*'
     where: 'server'

@@ -1,0 +1,43 @@
+<template name="roadsTravelled">
+	<div class="container-fluid">
+		<div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+					<table class="table" id=roadsTravelledTable>
+  					<tr class="border_bot">
+  						<th>Road</th>
+  						<th>Mile Start</th>
+  						<th>Mile End</th>
+  						<th>Day of Week</th>	
+  						<th>Time Start</th>
+  						<th>Time End</th>
+  					</tr>
+            <tr>
+							<td>
+								<div class="ui-widget">
+  								<label for="roads">Roads: </label>
+  								<input id="roads">
+								</div>
+							</td>
+							<td>10</td>
+							<td>20</td>
+							<td>
+								<div class="checkbox"><label><input type="checkbox">Monday</label></div>
+    						<div class="checkbox"><label><input type="checkbox">Tuesday</label></div>
+    						<div class="checkbox"><label><input type="checkbox">Wednesday</label></div>
+    						<div class="checkbox"><label><input type="checkbox">Thursday</label></div>
+    						<div class="checkbox"><label><input type="checkbox">Friday</label></div>
+    						<div class="checkbox"><label><input type="checkbox">Saturday</label></div>
+    						<div class="checkbox"><label><input type="checkbox">Sunday</label></div>
+  						</td>
+							<td>10pm</td>
+							<td>11pm</td>
+            </tr>
+            <tr><br></tr>
+					</table>
+				</div>
+			<div class="col-md-1"></div>
+    </div>
+    <div class="row"><a  id="add">+</a></div>
+  </div>
+</template>
