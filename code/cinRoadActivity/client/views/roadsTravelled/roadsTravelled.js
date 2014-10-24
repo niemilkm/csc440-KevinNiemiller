@@ -11,3 +11,11 @@ Template.roadsTravelled.rendered = function()
         });
 
   };
+
+  Template.roadsTravelled.events =
+  {
+    'change .endTime_min': function()
+    {
+      console.log($('.endTime_min').val());
+    }
+  };
