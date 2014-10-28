@@ -1,0 +1,111 @@
+<template name="roadsTravelledd">
+	<div class="container-fluid">
+		<div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+					<table class="table" id="roadsTravelledTable">
+  					<tr class="border_bot">
+  						<th>Road</th>
+  						<th>Mile Start</th>
+  						<th>Mile End</th>
+  						<th>Day of Week</th>	
+  						<th>Time Start</th>
+  						<th>Time End</th>
+  					</tr>
+            <tr>
+							<td>
+								<div class="ui-widget">
+  								<input id="roads" size="7">
+								</div>
+							</td>
+							<td>
+                <div class="ui-widget">
+                  <input id="startMile" size="4">
+                </div>
+              </td>
+							<td>
+                <input id="endMile" size="4">
+              </td>
+							<td>
+								<div class="checkbox monday1"><label><input type="checkbox">Monday</label></div>
+    						<div class="checkbox tuesday1"><label><input type="checkbox">Tuesday</label></div>
+    						<div class="checkbox wednesday1"><label><input type="checkbox">Wednesday</label></div>
+    						<div class="checkbox thursday1"><label><input type="checkbox">Thursday</label></div>
+    						<div class="checkbox friday1"><label><input type="checkbox">Friday</label></div>
+    						<div class="checkbox saturday1"><label><input type="checkbox">Saturday</label></div>
+    						<div class="checkbox sunday1"><label><input type="checkbox">Sunday</label></div>
+  						</td>
+							<td>
+                <div class="row">
+                  <select class="startTime_hr startTime_hr1">
+                    <option selected disabled>Hr</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                  </select>
+                  <select class="startTime_min startTime_min1">
+                    <option selected disabled>Min</option>
+                    <option value="00">00</option>
+                    <option value="15">15</option>
+                    <option value="30">30</option>
+                    <option value="45">45</option>
+                  </select>
+                  <select class="startTime_amppm startTime">
+                    <option selected disabled>AM</option>
+                    <option value="1">AM</option>
+                    <option value="2">PM</option>
+                  </select>
+                </div>
+              </td>
+							<td>
+                <div class="row">
+                  <select class="endTime_hr endTime_hr1">
+                    <option selected disabled>Hr</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                  </select>
+                  <select class="endTime_min endTime_min1">
+                    <option selected disabled>Min</option>
+                    <option value="00">00</option>
+                    <option value="15">15</option>
+                    <option value="30">30</option>
+                    <option value="45">45</option>
+                  </select>
+                  <select class="endTime_amppm endTime">
+                    <option selected disabled>AM</option>
+                    <option value="1">AM</option>
+                    <option value="2">PM</option>
+                  </select>
+                </div>
+              </td>
+            </tr>
+            <tr><br></tr>
+            {{loadRoads}}
+					</table>
+				</div>
+			<div class="col-md-1"></div>
+    </div>
+    <div class="row add">
+      <button type="button" id="add" class="add btn btn-primary">ADD</button>
+    </div>
+  </div>
+</template>

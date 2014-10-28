@@ -1,129 +1,39 @@
 <template name="roadsTravelled">
-	<div class="container-fluid">
-		<div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-10">
-					<table class="table" id="roadsTravelledTable">
-  					<tr class="border_bot">
-  						<th>Road</th>
-  						<th>Mile Start</th>
-  						<th>Mile End</th>
-  						<th>Day of Week</th>	
-  						<th>Time Start</th>
-  						<th>Time End</th>
-  					</tr>
-            <tr>
-							<td>
-								<div class="ui-widget">
-  								<input id="roads" size="7">
-								</div>
-							</td>
-							<td>
-                <div class="ui-widget">
-                  <input id="startMile" size="4">
-                </div>
-              </td>
-							<td>
-                <input id="endMile" size="4">
-              </td>
-							<td>
-								<div class="checkbox"><label><input type="checkbox">Monday</label></div>
-    						<div class="checkbox"><label><input type="checkbox">Tuesday</label></div>
-    						<div class="checkbox"><label><input type="checkbox">Wednesday</label></div>
-    						<div class="checkbox"><label><input type="checkbox">Thursday</label></div>
-    						<div class="checkbox"><label><input type="checkbox">Friday</label></div>
-    						<div class="checkbox"><label><input type="checkbox">Saturday</label></div>
-    						<div class="checkbox"><label><input type="checkbox">Sunday</label></div>
-  						</td>
-							<td>
-                <div class="btn-group">
-                  <a class="btn btn-primary" href="#">
-                      <i class="icon-user icon-white"></i> Hr
-                  </a>
-                  <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
-                      <span class="caret"></span>
-                  </a>
-                  <ul class="dropdown-menu">
-                      <li><a href="#">1</a></li>
-                      <li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
-                      <li><a href="#">4</a></li>
-                      <li><a href="#">5</a></li>
-                      <li><a href="#">6</a></li>
-                      <li><a href="#">7</a></li>
-                      <li><a href="#">8</a></li>
-                      <li><a href="#">9</a></li>
-                      <li><a href="#">10</a></li>
-                      <li><a href="#">11</a></li>
-                      <li><a href="#">12</a></li>
-                  </ul>
-                </div>
-                <div class="btn-group">
-                  <a class="btn btn-primary" href="#">
-                      <i class="icon-user icon-white"></i> Min
-                  </a>
-                  <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
-                      <span class="caret"></span>
-                  </a>
-                  <ul class="dropdown-menu">
-                      <li><a href="#">00</a></li>
-                      <li><a href="#">15</a></li>
-                      <li><a href="#">30</a></li>
-                      <li><a href="#"> 45</a></li>
-                  </ul>
-                </div>
-                <div class="btn-group">
-                  <a class="btn btn-primary" href="#">
-                      <i class="icon-user icon-white"></i> AM
-                  </a>
-                  <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
-                      <span class="caret"></span>
-                  </a>
-                  <ul class="dropdown-menu">
-                      <li><a href="#">AM</a></li>
-                      <li><a href="#">PM</a></li>
-                  </ul>
-                </div>
-              </td>
-							<td>
-                <div class="row">
-                  <select class="endTime_hr">
-                    <option selected disabled>Hr</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5"></option>
-                    <option value="6"></option>
-                    <option value="7"></option>
-                    <option value="8"></option>
-                    <option value="9"></option>
-                    <option value="10"></option>
-                    <option value="11"></option>
-                    <option value="12"></option>
-                  </select>
-                  <select class="endTime_min">
-                    <option selected disabled>Min</option>
-                    <option value="00">00</option>
-                    <option value="15">15</option>
-                    <option value="30">30</option>
-                    <option value="45">45</option>
-                  </select>
-                  <select class="endTime_min">
-                    <option selected disabled>AM</option>
-                    <option value="1">AM</option>
-                    <option value="2">PM</option>
-                  </select>
-                </div>
-              </td>
-            </tr>
-            <tr><br></tr>
-					</table>
-				</div>
-			<div class="col-md-1"></div>
+  <div class="container">
+
+    <div class="page-header">
+      <h1>Roads Travelled</h1>
+      <div class="page-header-actions">
+        <button class="btn btn-default open-modal" data-toggle="modal" data-target="#addRoad"><i class="fa fa-edit"></i> Add Road</button>
+      </div>
     </div>
-    <div class="row add">
-      <button type="button" id="add" class="add btn btn-primary">ADD</button>
+
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table" id="roadsTravelledTable">
+          <tr class="border_bot">
+            <th>Road</th>
+            <th>Day of Week</th> 
+            <th>Mile Start</th>
+            <th>Mile End</th> 
+            <th>Time Start</th>
+            <th>Time End</th>
+          </tr>
+          {{#each road}}
+            <tr>
+              <td>{{Road}}</td>
+              <td>{{DayOfWeek}}</td>
+              <td>{{MileStart}}</td>
+              <td>{{MileEnd}}</td>
+              <td>{{TimeStart}}</td>
+              <td>{{TimeEnd}}</td>
+            </tr>
+          {{/each}}
+        </table>
+      </div>
     </div>
   </div>
+
+  {{> addRoad}}
+
 </template>
