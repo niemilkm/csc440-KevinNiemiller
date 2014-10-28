@@ -13,20 +13,24 @@
         <table class="table" id="roadsTravelledTable">
           <tr class="border_bot">
             <th>Road</th>
-            <th>Day of Week</th> 
+            <th>Days</th> 
             <th>Mile Start</th>
             <th>Mile End</th> 
             <th>Time Start</th>
             <th>Time End</th>
+            <th></th>
           </tr>
-          {{#each road}}
+          {{#each roadInfo}}
             <tr>
-              <td>{{Road}}</td>
-              <td>{{DayOfWeek}}</td>
-              <td>{{MileStart}}</td>
-              <td>{{MileEnd}}</td>
-              <td>{{TimeStart}}</td>
-              <td>{{TimeEnd}}</td>
+              <td>{{road}}</td>
+              <td>{{days}}</td>
+              <td>{{startMile}}</td>
+              <td>{{endMile}}</td>
+              <td>{{startTime_display}}</td>
+              <td>{{endTime_display}}</td>
+              <td>
+                <button class="btn btn-default openEditRoadModal open-modal" data-toggle="modal" target="#editRoad" data-id= "{{_id}}"><i class="fa fa-edit"></i> Edit</button>
+              </td>
             </tr>
           {{/each}}
         </table>
@@ -35,5 +39,6 @@
   </div>
 
   {{> addRoad}}
+  {{> editRoad}}
 
 </template>

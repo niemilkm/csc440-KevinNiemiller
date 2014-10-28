@@ -32,8 +32,60 @@ Template.addRoad.events =
     var startTime_nonISO = "1970-01-01 " + startHr + ":" + startMin + ":00 " + startampm;
     var endTime_nonISO = "1970-01-01 " + endHr + ":" + endMin + ":00 " + endampm;
 
+    var startTime_display = startHr + ":" + startMin + " " + startampm;
+    var endTime_display = endHr + ":" + endMin + " " + endampm;
+
     var startTime = new Date(startTime_nonISO);
     var endTime = new Date(endTime_nonISO);
+
+    var days = "";
+    if (monday)
+    {
+    	monday = "checked";
+    	days = days + "Monday";
+    }
+    if (tuesday)
+    {
+    	if (days.substr(days.length - 1) == 'y')
+    		days = days + ", ";
+    	tuesday = "checked";
+    	days = days + "Tuesday";
+    }
+    if (wednesday)
+    {
+    	if (days.substr(days.length - 1) == 'y')
+    		days = days + ", ";
+    	wednesday = "checked";
+    	days = days + "Wednesday";
+    }
+    if (thursday)
+    {
+    	if (days.substr(days.length - 1) == 'y')
+    		days = days + ", ";
+    	thursday = "checked";
+    	days = days + "Thursday";
+    }
+    if (friday)
+    {
+    	if (days.substr(days.length - 1) == 'y')
+    		days = days + ", ";
+    	friday = "checked";
+    	days = days + "Friday";
+    }
+    if (saturday)
+    {
+    	if (days.substr(days.length - 1) == 'y')
+    		days = days + ", ";
+    	saturday = "checked";
+    	days = days + "Saturday";
+    }
+    if (sunday)
+    {
+    	if (days.substr(days.length - 1) == 'y')
+    		days = days + ", ";
+    	sunday = "checked";
+    	days = days + "Sunday";
+    }
 
     var roadDetails = {
     										road: road,
@@ -47,7 +99,16 @@ Template.addRoad.events =
     										startMile: startMile,
     										endMile: endMile,
     										startTime: startTime,
-    										endTime: endTime
+    										endTime: endTime,
+    										startTime_display: startTime_display,
+    										endTime_display: endTime_display,
+    										days: days,
+    										startHr: startHr,
+    										startMin: startMin,
+    										startampm: startampm,
+    										endHr: endHr,
+    										endMin: endMin,
+    										endampm: endampm
     									};
  
     Meteor.call("insert_roadData", roadDetails)
@@ -71,4 +132,5 @@ Template.addRoad.events =
     $('#addRoad').modal('hide');
 
   },
+
 }
