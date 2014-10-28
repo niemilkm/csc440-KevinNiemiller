@@ -17,6 +17,16 @@
     'click .add': function()
     {
       console.log("in add");
+      var htmlCode = addRowRoads();
+      $('#roadsTravelledTable tr:last').after(htmlCode);
+      return false;
+    }
+
+  };
+
+  function addRowRoads()
+    {
+      console.log("in addRowRoads");
       var htmlCode = "\
       <tr>\
         <td>\
@@ -124,13 +134,5 @@
         </td>\
       </tr>\
       ";
-      //$('#roadsTravelledTable tbody>tr:last').clone(true).insertAfter('#roadsTravelledTable tbody>tr:last');
-      // var $tr    = $(this).closest('.border_bot');
-      // var $clone = $tr.clone();
-      // $clone.find(':text').val('');
-      // $tr.after($clone);
-      $('#roadsTravelledTable tr:last').after(htmlCode);
-      return false;
+      return htmlCode;
     }
-
-  };
