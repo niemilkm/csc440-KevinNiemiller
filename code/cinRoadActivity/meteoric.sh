@@ -54,17 +54,9 @@ else
 	SSH_HOST="ubuntu@$APP_HOST" SSH_OPT="-i $EC2_PEM_FILE"
 fi
 
-if [ -z "$APP_PATH" ]; then
-	APP_PATH="."
-fi
 
 
-if [ -z "$GIT_BRANCH" ]; then
-	GIT_BRANCH="master"
-fi
-
-
-SETUP=<<EOF
+SETUP="
 sudo apt-get install software-properties-common;
 sudo add-apt-repository ppa:chris-lea/node.js;
 sudo apt-get -qq update;
@@ -78,11 +70,18 @@ sudo mkdir -p $APP_DIR;
 cd $APP_DIR;
 pwd;
 sudo git clone $GIT_URL $APP_NAME;
-EOF
+"
+
+if [ -z "$APP_PATH" ]; then
+	APP_PATH="."
+fi
 
 
+if [ -z "$GIT_BRANCH" ]; then
+	GIT_BRANCH="master"
+fi
 
-DEPLOY=<<EOF
+DEPLOY="
 cd $APP_DIR;
 cd $APP_NAME;
 echo Updating codebase;
@@ -108,7 +107,7 @@ if [ -n "$MAIL_URL" ]; then
 fi;
 export BIND_IP=$BIND_IP;
 export PORT=$PORT;
-EOF
+"
 
 if [ -n "$PRE_METEOR_START" ]; then
     DEPLOY="$DEPLOY $PRE_METEOR_START"
@@ -119,21 +118,6 @@ echo Starting forever;
 sudo -E forever restart bundle/main.js || sudo -E forever start bundle/main.js;
 "
 
-START=<<EOF
-cd ~;
-sudo npm install -g fibers;
-sudo npm install -g underscore;
-sudo npm install -g source-map-support;
-sudo npm install -g semver;
-
-export ROOT_URL="http://ec2-54-68-136-133.us-west-2.compute.amazonaws.com/";
-export BIND_IP="0.0.0.0";
-export PORT="80";
-export MONGO_URL="mongodb://localhost:27017/cinRoadActivity"; 
-cd /home/meteor/cinRoadActivity/code;
-sudo forever stopall;
-sudo forever start bundle/main.js;
-EOF
 
 case "$1" in
 setup)
@@ -141,10 +125,6 @@ setup)
 	;;
 deploy)
 	ssh $SSH_OPT $SSH_HOST $DEPLOY
-	;;
-start)
-  scp $SSH_OPT start.sh $SSH_HOST
-	ssh $SSH_OPT -o RequestTTY=force $SSH_HOST "sh start.sh"
 	;;
 *)
 	cat <<ENDCAT
@@ -154,7 +134,6 @@ Available actions:
 
 setup   - Install a meteor environment on a fresh Ubuntu server
 deploy  - Deploy the app to the server
-start   - Start app
 ENDCAT
 	;;
 esac

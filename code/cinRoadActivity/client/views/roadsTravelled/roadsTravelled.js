@@ -15,5 +15,10 @@
       console.log("open edit modal: " + this._id);
       Session.set("editRoadId", this._id);
       $("#editRoad").modal('show');
+    },
+
+    'click .deleteRoad': function()
+    {
+      Meteor.call("delete_roadData", this._id);
     }
   };
