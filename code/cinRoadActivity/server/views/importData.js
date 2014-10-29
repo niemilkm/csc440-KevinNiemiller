@@ -3,7 +3,6 @@ Meteor.methods({
 
 	importData: function() {
 		// Create the return object
-		console.log("import data by user start");
 			
 			// var xhttp = new XMLHttpRequest();
 			// xhttp.open("GET","http://www.buckeyetraffic.org/services/RoadActivity.aspx",false);
