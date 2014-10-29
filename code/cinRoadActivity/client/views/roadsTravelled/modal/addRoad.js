@@ -112,7 +112,7 @@ Template.addRoad.events =
     									};
  
     Meteor.call("insert_roadData", roadDetails)
-    $('#road').val('');
+    $('#roadName').val('');
     $('#monday').prop('checked', false);
     $('#tuesday').prop('checked', false);
     $('#wednesday').prop('checked', false);
@@ -132,5 +132,27 @@ Template.addRoad.events =
     $('#addRoad').modal('hide');
 
   },
+
+  'click .modalCloseAdd': function()
+  {
+    console.log("add modal close");
+    $('#roadName').val('');
+    $('#monday').prop('checked', false);
+    $('#tuesday').prop('checked', false);
+    $('#wednesday').prop('checked', false);
+    $('#thursday').prop('checked', false);
+    $('#friday').prop('checked', false);
+    $('#saturday').prop('checked', false);
+    $('#saturday').prop('checked', false);
+    $('#sunday').prop('checked', false);
+    $('#startMile').val('');
+    $('#endMile').val('');
+    $('#startTime_hr').val('');
+    $('#startMin').val('');
+    $('#startampm').val('');
+    $('#endHr').val('');
+    $('#endMin').val('');
+    $('#ampm').val('');
+  }
 
 }
