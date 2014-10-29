@@ -11,22 +11,21 @@ Template.editRoad.rendered = function()
 
 Template.editRoad.helpers(
 {
-	roadInfo: function()
+	roadInfoE: function()
 	{
 		var roadId = Session.get("editRoadId");
 		return RoadsTravelled.find({_id: roadId}).fetch()[0].road;
 	},
 
-	monday: function()
+	mondayE: function()
 	{
-		console.log("monday");
 		var roadId = Session.get("editRoadId");
 		if (RoadsTravelled.find({_id: roadId}).fetch()[0].monday == "checked")
 			return 'checked';
 		return "";
 	},
 
-	tuesday: function()
+	tuesdayE: function()
 	{
 		var roadId = Session.get("editRoadId");
 		if (RoadsTravelled.find({_id: roadId}).fetch()[0].tuesday == "checked")
@@ -34,7 +33,7 @@ Template.editRoad.helpers(
 		return "";
 	},
 	
-	wednesday: function()
+	wednesdayE: function()
 	{
 		var roadId = Session.get("editRoadId");
 		if (RoadsTravelled.find({_id: roadId}).fetch()[0].wednesday == "checked")
@@ -42,7 +41,7 @@ Template.editRoad.helpers(
 		return "";
 	},
 
-	thursday: function()
+	thursdayE: function()
 	{
 		var roadId = Session.get("editRoadId");
 		if (RoadsTravelled.find({_id: roadId}).fetch()[0].thursday == "checked")
@@ -50,7 +49,7 @@ Template.editRoad.helpers(
 		return "";
 	},
 	
-	friday: function()
+	fridayE: function()
 	{
 		var roadId = Session.get("editRoadId");
 		if (RoadsTravelled.find({_id: roadId}).fetch()[0].friday == "checked")
@@ -58,7 +57,7 @@ Template.editRoad.helpers(
 		return "";
 	},
 	
-	saturday: function()
+	saturdayE: function()
 	{
 		var roadId = Session.get("editRoadId");
 		if (RoadsTravelled.find({_id: roadId}).fetch()[0].saturday == "checked")
@@ -66,7 +65,7 @@ Template.editRoad.helpers(
 		return "";
 	},
 	
-	sunday: function()
+	sundayE: function()
 	{
 		var roadId = Session.get("editRoadId");
 		if (RoadsTravelled.find({_id: roadId}).fetch()[0].sunday == "checked")
@@ -74,19 +73,19 @@ Template.editRoad.helpers(
 		return "";
 	},
 	
-	startMile: function()
+	startMileE: function()
 	{
 		var roadId = Session.get("editRoadId");
 		return RoadsTravelled.find({_id: roadId}).fetch()[0].startMile;
 	},
 
-	endMile: function()
+	endMileE: function()
 	{
 		var roadId = Session.get("editRoadId");
 		return RoadsTravelled.find({_id: roadId}).fetch()[0].endMile;
 	},
 
-	startHr: function()
+	startHrE: function()
 	{
 		var roadId = Session.get("editRoadId");
 		var startHr = RoadsTravelled.find({_id: roadId}).fetch()[0].startHr;
@@ -94,7 +93,7 @@ Template.editRoad.helpers(
 		return startHr;
 	},
 
-	startMin: function()
+	startMinE: function()
 	{
 		var roadId = Session.get("editRoadId");
 		var startMin = RoadsTravelled.find({_id: roadId}).fetch()[0].startMin;
@@ -102,7 +101,7 @@ Template.editRoad.helpers(
 		return startMin;
 	},
 
-	startampm: function()
+	startampmE: function()
 	{
 		var roadId = Session.get("editRoadId");
 		var startampm = RoadsTravelled.find({_id: roadId}).fetch()[0].startampm;
@@ -110,7 +109,7 @@ Template.editRoad.helpers(
 		return startampm;
 	},
 
-	endHr: function()
+	endHrE: function()
 	{
 		var roadId = Session.get("editRoadId");
 		var endHr = RoadsTravelled.find({_id: roadId}).fetch()[0].endHr;
@@ -118,7 +117,7 @@ Template.editRoad.helpers(
 		return endHr;
 	},
 
-	endMin: function()
+	endMinE: function()
 	{
 		var roadId = Session.get("editRoadId");
 		var endMin = RoadsTravelled.find({_id: roadId}).fetch()[0].endMin;
@@ -126,7 +125,7 @@ Template.editRoad.helpers(
 		return endMin;
 	},
 
-	endampm: function()
+	endampmE: function()
 	{
 		var roadId = Session.get("editRoadId");
 		var endampm = RoadsTravelled.find({_id: roadId}).fetch()[0].endampm;
@@ -167,9 +166,6 @@ Template.editRoad.events =
 
     var startTime = new Date(startTime_nonISO);
     var endTime = new Date(endTime_nonISO);
-
-    console.log("monday: " + monday);
-    console.log("tuesday: " + tuesday);
 
     var days = "";
     if (monday)
@@ -220,8 +216,6 @@ Template.editRoad.events =
     	days = days + "Sunday";
     }
 
-    console.log("days: " + days);
-
     var roadDetails = {
     										road: road,
     										monday: monday,
@@ -247,23 +241,42 @@ Template.editRoad.events =
     									};
  
     Meteor.call("update_roadData", roadDetails, roadId)
-    $('#road').val('');
-    $('#monday').prop('checked', false);
-    $('#tuesday').prop('checked', false);
-    $('#wednesday').prop('checked', false);
-    $('#thursday').prop('checked', false);
-    $('#friday').prop('checked', false);
-    $('#saturday').prop('checked', false);
-    $('#saturday').prop('checked', false);
-    $('#sunday').prop('checked', false);
-    $('#startMile').val('');
-    $('#endMile').val('');
-    $('#startHr').val('');
-    $('#startMin').val('');
-    $('#startampm').val('');
-    $('#endHr').val('');
-    $('#endMin').val('');
-    $('#ampm').val('');
+    // $('#roadNameEdit').val('');
+    // $('#mondayEdit').prop('checked', false);
+    // $('#tuesdayEdit').prop('checked', false);
+    // $('#wednesdayEdit').prop('checked', false);
+    // $('#thursdayEdit').prop('checked', false);
+    // $('#fridayEdit').prop('checked', false);
+    // $('#saturdayEdit').prop('checked', false);
+    // $('#sundayEdit').prop('checked', false);
+    // $('#startMileEdit').val('');
+    // $('#endMileEdit').val('');
+    // $('.startTime_hrEdit').val('');
+    // $('.startTime_minEdit').val('');
+    // $('.startTime_ampmEdit').val('');
+    // $('.endTime_hrEdit').val('');
+    // $('.endTime_minEdit').val('');
+    // $('.endTime_ampmEdit').val('');
     $('#editRoad').modal('hide');
+  },
+
+  'click .editModalClose': function()
+  {
+  	// $('#roadNameEdit').val('');
+   //  $('#mondayEdit').prop('checked', false);
+   //  $('#tuesdayEdit').prop('checked', false);
+   //  $('#wednesdayEdit').prop('checked', false);
+   //  $('#thursdayEdit').prop('checked', false);
+   //  $('#fridayEdit').prop('checked', false);
+   //  $('#saturdayEdit').prop('checked', false);
+   //  $('#sundayEdit').prop('checked', false);
+   //  $('#startMileEdit').val('');
+   //  $('#endMileEdit').val('');
+   //  $('.startTime_hrEdit').val('');
+   //  $('.startTime_minEdit').val('');
+   //  $('.startTime_ampmEdit').val('');
+   //  $('.endTime_hrEdit').val('');
+   //  $('.endTime_minEdit').val('');
+   //  $('.endTime_ampmEdit').val('');
   }
 }

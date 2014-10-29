@@ -13,4 +13,22 @@ Meteor.startup(function () {
 		for (var i=0; i<roads.length; i++)
 			Roads.insert({name: roads[i]});
 	}
+
+
+	Fiber = Npm.require('fibers');
+			 setInterval( function ()
+			  { Fiber(function()
+			   {
+			   		console.log("in fiber function");
+			   		Meteor.call("importData", function(error, result){
+			        if (error)
+			          console.log("System Import Data - error in importData: " + error);
+			        else
+			          console.log("System Import Data - importData complete");
+      			});
+			   }).run();
+				}, 300000 );
+
 });
+
+
