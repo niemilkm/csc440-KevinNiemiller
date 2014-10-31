@@ -1,0 +1,42 @@
+<template name="analyze">
+	<div class="container">
+		<div class="page-header">
+      <h1>Analyze</h1>
+      <div class="page-header-actions">
+        <button class="btn btn-default open-modal" data-toggle="modal" data-target="#addFilter"><i class="fa fa-edit"></i> Add Filter</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table" id="analyzeTable">
+          <tr class="border_bot">
+            <th>Road</th>
+            <th>Mile Start</th>
+            <th>Mile End</th> 
+            <th>Date & Time Start</th>
+            <th>Date & Time End</th>
+            <th></th>
+          </tr>
+          {{#each filterInfo}}
+            <tr>
+              <td>{{road}}</td>
+              <td>{{startMile}}</td>
+              <td>{{endMile}}</td>
+              <td>{{startTime_display}}</td>
+              <td>{{endTime_display}}</td>
+              <td>
+                <button class="btn btn-default open-modal openEditFilterModal" data-toggle="modal" target="#editFilter" data-id="{{_id}}"><i class="fa fa-edit"></i> Edit</button>
+                <button class="btn btn-default deleteFilter" id="{{_id}}"><i class="fa fa-trash-o"></i> Delete</button>
+              </td>
+            </tr>
+          {{/each}}
+        </table>
+      </div>
+    </div>
+  </div>
+
+  {{> addFilter}}
+  {{> editFilter}}
+
+</template>

@@ -8,6 +8,9 @@ Router.map ->
   @route 'roadsTravelled',
     path: '/roadsTravelled'
 
+  @route 'analyze',
+    path: '/analyze'
+
   @route 'notFound',
     path: '*'
     where: 'server'

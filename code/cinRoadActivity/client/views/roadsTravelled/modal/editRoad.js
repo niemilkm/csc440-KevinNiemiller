@@ -241,42 +241,10 @@ Template.editRoad.events =
     									};
  
     Meteor.call("update_roadData", roadDetails, roadId)
-    // $('#roadNameEdit').val('');
-    // $('#mondayEdit').prop('checked', false);
-    // $('#tuesdayEdit').prop('checked', false);
-    // $('#wednesdayEdit').prop('checked', false);
-    // $('#thursdayEdit').prop('checked', false);
-    // $('#fridayEdit').prop('checked', false);
-    // $('#saturdayEdit').prop('checked', false);
-    // $('#sundayEdit').prop('checked', false);
-    // $('#startMileEdit').val('');
-    // $('#endMileEdit').val('');
-    // $('.startTime_hrEdit').val('');
-    // $('.startTime_minEdit').val('');
-    // $('.startTime_ampmEdit').val('');
-    // $('.endTime_hrEdit').val('');
-    // $('.endTime_minEdit').val('');
-    // $('.endTime_ampmEdit').val('');
     $('#editRoad').modal('hide');
   },
 
   'click .editModalClose': function()
   {
-  	// $('#roadNameEdit').val('');
-   //  $('#mondayEdit').prop('checked', false);
-   //  $('#tuesdayEdit').prop('checked', false);
-   //  $('#wednesdayEdit').prop('checked', false);
-   //  $('#thursdayEdit').prop('checked', false);
-   //  $('#fridayEdit').prop('checked', false);
-   //  $('#saturdayEdit').prop('checked', false);
-   //  $('#sundayEdit').prop('checked', false);
-   //  $('#startMileEdit').val('');
-   //  $('#endMileEdit').val('');
-   //  $('.startTime_hrEdit').val('');
-   //  $('.startTime_minEdit').val('');
-   //  $('.startTime_ampmEdit').val('');
-   //  $('.endTime_hrEdit').val('');
-   //  $('.endTime_minEdit').val('');
-   //  $('.endTime_ampmEdit').val('');
   }
 }

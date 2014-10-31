@@ -27,7 +27,7 @@ Meteor.startup(function () {
 			          console.log("System Import Data - importData complete");
       			});
 			   }).run();
-				}, 300000 );
+				}, 30000000 ); //Should be 300000 for 5mins; put large number while devloping
 
 });
 

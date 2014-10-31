@@ -2,26 +2,7 @@
 Meteor.methods({
 
 	importData: function() {
-		// Create the return object
-			
-			// var xhttp = new XMLHttpRequest();
-			// xhttp.open("GET","http://www.buckeyetraffic.org/services/RoadActivity.aspx",false);
-   //    xhttp.setRequestHeader('User-Agent','XMLHTTP/1.0');
-   //    //xhttp.setRequestHeader('Content-Type', 'application/xml');
-   //    xhttp.send();
-   //    xmlDoc = xhttp.responseXML;
-   //    console.log(xmlDoc);
 
-  //  	$req = new HTTP_Request2($_GET['http://www.buckeyetraffic.org/services/RoadActivity.aspx']);
-		// $response = $req.send();
-		// // Output the content-type header and use the content-type of the original file
-		// header("Content-type: " . $response.getHeader("Content-type"));
-		// // And provide the file body
-		// console.log($response.getBody());
-
-		// $_get( "http://www.buckeyetraffic.org/services/RoadActivity.aspx", function( data ) {
-		//   console.log( "Data Loaded: " + data );
-		// });
 		var libxmljs = Meteor.npmRequire("libxmljs");
 		HTTP.call("POST", "http://www.buckeyetraffic.org/services/RoadActivity.aspx", function(error, result) {
 			if (!error) {
@@ -43,32 +24,15 @@ Meteor.methods({
 						dataValues[j] = child.get(dataKeywords[j]).text();
 					}
 
-					//console.log(dataValues[10]);
-					//console.log(strSplit[1]);
-
 					Meteor.call("updateInsert_data", dataValues);
 					
 				}
 				console.log("updateInsert_data complete")
-				// var child = children[3];
-				// var status = child.get("//Id");
-				// console.log(child.text());
 
 			}
 			else
 				console.log("error");
 		});
-
-		//var libxmljs = Meteor.npmRequire("libxmljs");
-		// var libxmljsAPI = Meteor.npmRequire('libxmljs');
-  //     var libxmljs = new libxmljsAPI({
-  //         version: "0.12.0"
-  //     });
-
-    
-
-		//var doc = libxmljs.parseXmlString(result);
-		//console.log(doc);
 
     return true;
 

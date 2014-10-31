@@ -1,11 +1,11 @@
-<template name="addRoad">
+<template name="addFilter">
  <!-- Add Fields Modal -->
-  <div class="modal fade in" id="addRoad" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="modal fade in" id="addFilter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close modalCloseAdd" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="myModalLabel" data-target=".bs-example-modal-lg">Add Road</h4>
+          <h4 class="modal-title" id="myModalLabel" data-target=".bs-example-modal-lg">Add Filter</h4>
         </div>
         <div class="modal-body">
           <div class="row">
@@ -13,34 +13,8 @@
               <form>
                 <div class="row">
                   <div class="form-group col-md-12">
-                    <label>Road Name</label>
+                    <label>Filter</label>
                     <input id="roadName" type="text" class="form-control">
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <label>Applicable Days</label>
-                    <div class="checkbox">
-                      <label><input type="checkbox" id="monday">Monday</label>
-                    </div>
-                    <div class="checkbox">
-                      <label><input type="checkbox" id="tuesday">Tuesday</label>
-                    </div>
-                    <div class="checkbox">
-                      <label><input type="checkbox" id="wednesday">Wednesday</label>
-                    </div>
-                    <div class="checkbox">
-                      <label><input type="checkbox" id="thursday">Thursday</label>
-                    </div>
-                    <div class="checkbox">
-                      <label><input type="checkbox" id="friday">Friday</label>
-                    </div>
-                    <div class="checkbox">
-                      <label><input type="checkbox" id="saturday">Saturday</label>
-                    </div>
-                    <div class="checkbox">
-                      <label><input type="checkbox" id="sunday">Sunday</label>
-                    </div>
                   </div>
                 </div>
                 <div class="row">
@@ -55,6 +29,16 @@
                     <div class="ui-widget">
                       <input id="endMile">
                     </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>Start Date</label>
+                    <input type="text" id="startDatepicker" placeholder="{{startDate}}" readonly='readonly'>
+                  </div>
+                  <div class="col-md-6">
+                    <label>End Date</label>
+                    <input type="text" id="endDatepicker" placeholder="{{endDate}}" readonly='readonly'>
                   </div>
                 </div>
                 <div class="row">
@@ -147,7 +131,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default modalCloseAdd" data-dismiss="modal">Cancel</button>
-          <button type="button" id="addRoad_enter" class="btn btn-primary">Add</button>
+          <button type="button" id="addFilter_enter" class="btn btn-primary">Add</button>
         </div>
       </div>
     </div>

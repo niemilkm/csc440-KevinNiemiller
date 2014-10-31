@@ -23,49 +23,39 @@ Template.dashboard.helpers(
 
     if (filterCategory == "all" || !filterCategory_bool)
     {
-      console.log("in all");
       if (filterStartDate_bool && filterEndDate_bool)
       {
-        console.log("1");
         return RoadActivity.find({ISODateStart: {$gte: filterStartDate}, ISODateEnd: {$lte: filterEndDate}});
       }
       else if (filterStartDate_bool && !filterEndDate_bool)
       {
-        console.log("2");
         return RoadActivity.find({ISODateStart: {$gte: filterStartDate}});
       }
       else if (!filterStartDate_bool && filterEndDate_bool)
       {
-        console.log("3");
         return RoadActivity.find({ISODateEnd: {$lte: filterEndDate}});
       }
       else
       {
-        console.log("4");
         return RoadActivity.find({});
       }
     }
     else
     {
-      console.log("in else");
       if (filterStartDate_bool && filterEndDate_bool)
       {
-        console.log("5");
         return RoadActivity.find({Category: filterCategory, ISODateStart: {$gte: filterStartDate}, ISODateEnd: {$lt: filterEndDate}});
       }
       else if (filterStartDate_bool && !filterEndDate_bool)
       {
-        console.log("6");
         return RoadActivity.find({Category: filterCategory, ISODateStart: {$gte: filterStartDate}});
       }
       else if (!filterStartDate_bool && filterEndDate_bool)
       {
-        console.log("7");
         return RoadActivity.find({Category: filterCategory, ISODateEnd: {$lt: filterEndDate}});
       }
       else
       {
-        console.log("8");
         return RoadActivity.find({Category: filterCategory});
       }
     }
@@ -133,7 +123,6 @@ Template.dashboard.events =
     'change #categoryType': function(evt)
     {
       Session.set("filterCategory", evt.currentTarget.value);
-      //console.log("category changed to: " + evt.currentTarget.value);
     },
 
     'click #startDatepicker': function(evt)
