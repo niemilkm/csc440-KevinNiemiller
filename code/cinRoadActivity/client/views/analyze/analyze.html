@@ -3,7 +3,7 @@
 		<div class="page-header">
       <h1>Analyze</h1>
       <div class="page-header-actions">
-        <button class="btn btn-default open-modal" data-toggle="modal" data-target="#addFilter"><i class="fa fa-edit"></i> Add Filter</button>
+        <button class="btn btn-default open-modal openEditFilterModal" data-toggle="modal" data-target="#addFilter"><i class="fa fa-edit"></i> Add Filter</button>
       </div>
     </div>
 
@@ -23,8 +23,8 @@
               <td>{{road}}</td>
               <td>{{startMile}}</td>
               <td>{{endMile}}</td>
-              <td>{{startTime_display}}</td>
-              <td>{{endTime_display}}</td>
+              <td>{{startDateTime_display}}</td>
+              <td>{{endDateTime_display}}</td>
               <td>
                 <button class="btn btn-default open-modal openEditFilterModal" data-toggle="modal" target="#editFilter" data-id="{{_id}}"><i class="fa fa-edit"></i> Edit</button>
                 <button class="btn btn-default deleteFilter" id="{{_id}}"><i class="fa fa-trash-o"></i> Delete</button>

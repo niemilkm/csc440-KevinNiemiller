@@ -6,35 +6,22 @@ Template.addFilter.rendered = function()
       source: availableRoads
     });
 
+    $("#startDatepickerE").datepicker({
+      defaultDate: 'Enter Start Date'
+    });
+
   };
 
 Template.addFilter.helpers(
 {
-    startDate: function()
+  startDate: function()
   {
-    var filterStartDate = Session.get("filterStartDate_filter");
-    if (filterStartDate == null || filterStartDate == undefined)
-    {
-      return "Enter Start Date";
-    }
-    else
-    {
-      month = filterStartDate.getMonth() + 1;
-      return month + "/" + filterStartDate.getDate() + "/" + filterStartDate.getFullYear();
-    }
+    return "Enter Start Date";
   },
 
   endDate: function()
   {
-    var filterEndDate = Session.get("filterEndDate_filter");
-    if (filterEndDate == null || filterEndDate == undefined)
-    {
-      return "Enter End Date";
-    }
-    else
-    {
-      return filterEndDate.getMonth() + "/" + filterEndDate.getDate() + "/" + filterEndDate.getFullYear();
-    }
+    return "Enter End Date";
   }
 });
 
@@ -45,14 +32,14 @@ Template.addFilter.events =
     var road  			= $('#roadName').val().trim();
     var startMile 	    = $('#startMile').val().trim();
     var endMile 		= $('#endMile').val().trim();
-    var startDateTime   = Session.get("filterStartDate_filter");
+    var startDateTime   = $( "#startDatepicker" ).datepicker('getDate');
     var startHr 		= $('.startTime_hr').val();
     var startMin 		= $('.startTime_min').val();
     var startampm 	    = $('.startTime_ampm').val();
     var endHr 			= $('.endTime_hr').val();
     var endMin 			= $('.endTime_min').val();
     var endampm		 	= $('.endTime_ampm').val();
-    var endDateTime     = Session.get("filterEndDate_filter");
+    var endDateTime     = $( "#endDatepicker" ).datepicker('getDate');
 
     // var startTime_nonISO = "1970-01-01 " + startHr + ":" + startMin + ":00 " + startampm;
     // var endTime_nonISO = "1970-01-01 " + endHr + ":" + endMin + ":00 " + endampm;
@@ -121,9 +108,8 @@ Template.addFilter.events =
     {
       $( "#startDatepicker" ).datepicker({
         onSelect: function() {
-          var startDate = $( "#startDatepicker" ).datepicker('getDate');
-          console.log(startDate);
-          Session.set("filterStartDate_filter", startDate);
+          //var startDate = $( "#startDatepicker" ).datepicker('getDate');
+          //Session.set("filterStartDate_filter", startDate);
         },
         showButtonPanel: true,
         onClose: function(e) {
@@ -131,7 +117,7 @@ Template.addFilter.events =
           if (ev.srcElement.innerHTML == 'Clear')
           {
             this.value = ""; 
-            Session.set("filterStartDate_filter", null);
+            //Session.set("filterStartDate_filter", null);
           }
         },
          closeText: 'Clear',
@@ -141,11 +127,11 @@ Template.addFilter.events =
 
     'click #endDatepicker': function(evt)
     {
+      console.log("endDatepicker")
       $( "#endDatepicker" ).datepicker({
         onSelect: function() {
-          var endDate = $( "#endDatepicker" ).datepicker('getDate');
-          Session.set("filterEndDate_filter", endDate);
-          console.log(endDate);
+          //var endDate = $( "#endDatepicker" ).datepicker('getDate');
+          //Session.set("filterEndDate_filter", endDate);
         },
         showButtonPanel: true,
         onClose: function(e) {
@@ -153,7 +139,7 @@ Template.addFilter.events =
           if (ev.srcElement.innerHTML == 'Clear')
           {
             this.value = ""; 
-            Session.set("filterEndDate_filter", undefined);
+            //Session.set("filterEndDate_filter", null);
           }
         },
          closeText: 'Clear',

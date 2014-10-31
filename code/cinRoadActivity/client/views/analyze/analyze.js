@@ -10,8 +10,7 @@ Template.analyze.helpers(
   {
     'click .openEditFilterModal': function()
     {
-      Session.set("editRoadId", this._id);
-      $("#editFilter").modal('show');
+      Session.set("editFilterId", this._id);
     },
 
     'click .deleteFilter': function()

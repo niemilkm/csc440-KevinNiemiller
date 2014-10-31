@@ -13,69 +13,85 @@ Template.editFilter.helpers(
 {
 	roadInfoE: function()
 	{
-		var filterId = Session.get("editfilterId");
+		var filterId = Session.get("editFilterId");
 		return AnalyzeFilter.find({_id: filterId}).fetch()[0].road;
 	},
 	
 	startMileE: function()
 	{
-		var filterId = Session.get("editfilterId");
+		var filterId = Session.get("editFilterId");
 		return AnalyzeFilter.find({_id: filterId}).fetch()[0].startMile;
 	},
 
 	endMileE: function()
 	{
-		var filterId = Session.get("editfilterId");
+		var filterId = Session.get("editFilterId");
 		return AnalyzeFilter.find({_id: filterId}).fetch()[0].endMile;
 	},
 
 	startHrE: function()
 	{
-		var filterId = Session.get("editfilterId");
+		var filterId = Session.get("editFilterId");
 		var startHr = AnalyzeFilter.find({_id: filterId}).fetch()[0].startHr;
 		$('.startTime_hrEdit').val(startHr);
-		return startHr;
+		//return startHr;
 	},
 
 	startMinE: function()
 	{
-		var filterId = Session.get("editfilterId");
+		var filterId = Session.get("editFilterId");
 		var startMin = AnalyzeFilter.find({_id: filterId}).fetch()[0].startMin;
 		$('.startTime_minEdit').val(startMin);
-		return startMin;
+		//return startMin;
 	},
 
 	startampmE: function()
 	{
-		var filterId = Session.get("editfilterId");
+		var filterId = Session.get("editFilterId");
 		var startampm = AnalyzeFilter.find({_id: filterId}).fetch()[0].startampm;
 		$('.startTime_ampmEdit').val(startampm);
-		return startampm;
+		//return startampm;
 	},
 
 	endHrE: function()
 	{
-		var filterId = Session.get("editfilterId");
+		var filterId = Session.get("editFilterId");
 		var endHr = AnalyzeFilter.find({_id: filterId}).fetch()[0].endHr;
 		$('.endTime_hrEdit').val(endHr);
-		return endHr;
+		//return endHr;
 	},
 
 	endMinE: function()
 	{
-		var filterId = Session.get("editfilterId");
+		var filterId = Session.get("editFilterId");
 		var endMin = AnalyzeFilter.find({_id: filterId}).fetch()[0].endMin;
 		$('.endTime_minEdit').val(endMin);
-		return endMin;
+		//return endMin;
 	},
 
 	endampmE: function()
 	{
-		var filterId = Session.get("editfilterId");
+		var filterId = Session.get("editFilterId");
 		var endampm = AnalyzeFilter.find({_id: filterId}).fetch()[0].endampm;
 		$('.endTime_ampmEdit').val(endampm);
-		return endampm;
+		//return endampm;
 	},
+
+	startDateE: function()
+  {
+    var filterId = Session.get("editFilterId");
+		var startDateE = AnalyzeFilter.find({_id: filterId}).fetch()[0].startDate_display;
+		$("#startDatepickerE").datepicker("setDate", startDateE);
+		//return startDateE;
+  },
+
+  endDateE: function()
+  {
+    var filterId = Session.get("editFilterId");
+		var endDateE = AnalyzeFilter.find({_id: filterId}).fetch()[0].endDate_display;
+		$("#endDatepickerE").datepicker("setDate", endDateE);
+		//return endDateE;
+  }
 	
 });
 
@@ -83,7 +99,7 @@ Template.editFilter.events =
 {
 	'click #editFilter_enter': function()
   {
-		var filterId = Session.get("editfilterId");
+		var filterId = Session.get("editFilterId");
 
     var road  			= $('#roadNameEdit').val().trim();
     var startMile 	= $('#startMileEdit').val().trim();
@@ -126,5 +142,48 @@ Template.editFilter.events =
 
   'click .editModalClose': function()
   {
-  }
+  },
+
+  'click #startDatepickerE': function(evt)
+    {
+      $( "#startDatepickerE" ).datepicker({
+        onSelect: function() {
+          var startDate = $( "#startDatepickerE" ).datepicker('getDate');
+          Session.set("filterStartDate_filter", startDate);
+        },
+        showButtonPanel: true,
+        onClose: function(e) {
+          var ev = window.event;
+          if (ev.srcElement.innerHTML == 'Clear')
+          {
+            this.value = ""; 
+            Session.set("filterStartDate_filter", null);
+          }
+        },
+         closeText: 'Clear',
+         buttonText: ''
+      });
+    },
+
+    'click #endDatepickerE': function(evt)
+    {
+      console.log("endDatepickerE")
+      $( "#endDatepickerE" ).datepicker({
+        onSelect: function() {
+          var endDate = $( "#endDatepickerE" ).datepicker('getDate');
+          Session.set("filterEndDate_filter", endDate);
+        },
+        showButtonPanel: true,
+        onClose: function(e) {
+          var ev = window.event;
+          if (ev.srcElement.innerHTML == 'Clear')
+          {
+            this.value = ""; 
+            Session.set("filterEndDate_filter", null);
+          }
+        },
+         closeText: 'Clear',
+         buttonText: ''
+      });
+    }
 }
