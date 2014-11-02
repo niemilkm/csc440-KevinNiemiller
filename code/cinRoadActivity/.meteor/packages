@@ -19,4 +19,6 @@ meteorhacks:npm
 npm-container
 jquery-ui
 jquery-ui-bootstrap
+mrt:nvd3js
+d3
 
