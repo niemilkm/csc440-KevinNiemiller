@@ -6,7 +6,7 @@ Template.addFilter.rendered = function()
       source: availableRoads
     });
 
-    $("#startDatepickerE").datepicker({
+    $("#startDatepicker").datepicker({
       defaultDate: 'Enter Start Date'
     });
 
@@ -14,15 +14,7 @@ Template.addFilter.rendered = function()
 
 Template.addFilter.helpers(
 {
-  startDate: function()
-  {
-    return "Enter Start Date";
-  },
 
-  endDate: function()
-  {
-    return "Enter End Date";
-  }
 });
 
 Template.addFilter.events =
@@ -127,7 +119,6 @@ Template.addFilter.events =
 
     'click #endDatepicker': function(evt)
     {
-      console.log("endDatepicker")
       $( "#endDatepicker" ).datepicker({
         onSelect: function() {
           //var endDate = $( "#endDatepicker" ).datepicker('getDate');

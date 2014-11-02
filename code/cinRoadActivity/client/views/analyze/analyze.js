@@ -8,9 +8,11 @@ Template.analyze.helpers(
 
   Template.analyze.events =
   {
+
     'click .openEditFilterModal': function()
     {
       Session.set("editFilterId", this._id);
+      $(' #editFilter ').modal('show');
     },
 
     'click .deleteFilter': function()

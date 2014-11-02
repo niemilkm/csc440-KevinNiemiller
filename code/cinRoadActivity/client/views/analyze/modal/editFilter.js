@@ -14,83 +14,102 @@ Template.editFilter.helpers(
 	roadInfoE: function()
 	{
 		var filterId = Session.get("editFilterId");
-		return AnalyzeFilter.find({_id: filterId}).fetch()[0].road;
+    if (filterId != null || filterId != undefined)
+		  return AnalyzeFilter.find({_id: filterId}).fetch()[0].road;
 	},
 	
 	startMileE: function()
 	{
 		var filterId = Session.get("editFilterId");
-		return AnalyzeFilter.find({_id: filterId}).fetch()[0].startMile;
+    if (filterId != null || filterId != undefined)
+		  return AnalyzeFilter.find({_id: filterId}).fetch()[0].startMile;
 	},
 
 	endMileE: function()
 	{
 		var filterId = Session.get("editFilterId");
-		return AnalyzeFilter.find({_id: filterId}).fetch()[0].endMile;
+    if (filterId != null || filterId != undefined)
+		  return AnalyzeFilter.find({_id: filterId}).fetch()[0].endMile;
 	},
 
 	startHrE: function()
 	{
 		var filterId = Session.get("editFilterId");
-		var startHr = AnalyzeFilter.find({_id: filterId}).fetch()[0].startHr;
-		$('.startTime_hrEdit').val(startHr);
-		//return startHr;
+    if (filterId != null || filterId != undefined)
+    {
+		  var startHr = AnalyzeFilter.find({_id: filterId}).fetch()[0].startHr;
+		  $('.startTime_hrEdit').val(startHr);
+    }
 	},
 
 	startMinE: function()
 	{
 		var filterId = Session.get("editFilterId");
-		var startMin = AnalyzeFilter.find({_id: filterId}).fetch()[0].startMin;
-		$('.startTime_minEdit').val(startMin);
-		//return startMin;
+    if (filterId != null || filterId != undefined)
+    {
+		  var startMin = AnalyzeFilter.find({_id: filterId}).fetch()[0].startMin;
+		  $('.startTime_minEdit').val(startMin);
+    }
 	},
 
 	startampmE: function()
 	{
 		var filterId = Session.get("editFilterId");
-		var startampm = AnalyzeFilter.find({_id: filterId}).fetch()[0].startampm;
-		$('.startTime_ampmEdit').val(startampm);
-		//return startampm;
+    if (filterId != null || filterId != undefined)
+    {
+		  var startampm = AnalyzeFilter.find({_id: filterId}).fetch()[0].startampm;
+		  $('.startTime_ampmEdit').val(startampm);
+    }
 	},
 
 	endHrE: function()
 	{
 		var filterId = Session.get("editFilterId");
-		var endHr = AnalyzeFilter.find({_id: filterId}).fetch()[0].endHr;
-		$('.endTime_hrEdit').val(endHr);
-		//return endHr;
+    if (filterId != null || filterId != undefined)
+    {
+		  var endHr = AnalyzeFilter.find({_id: filterId}).fetch()[0].endHr;
+		  $('.endTime_hrEdit').val(endHr);
+    }
 	},
 
 	endMinE: function()
 	{
 		var filterId = Session.get("editFilterId");
-		var endMin = AnalyzeFilter.find({_id: filterId}).fetch()[0].endMin;
-		$('.endTime_minEdit').val(endMin);
-		//return endMin;
+    if (filterId != null || filterId != undefined)
+    {
+		  var endMin = AnalyzeFilter.find({_id: filterId}).fetch()[0].endMin;
+		  $('.endTime_minEdit').val(endMin);
+    }
 	},
 
 	endampmE: function()
 	{
 		var filterId = Session.get("editFilterId");
-		var endampm = AnalyzeFilter.find({_id: filterId}).fetch()[0].endampm;
-		$('.endTime_ampmEdit').val(endampm);
-		//return endampm;
+    if (filterId != null || filterId != undefined)
+    {
+  		var endampm = AnalyzeFilter.find({_id: filterId}).fetch()[0].endampm;
+  		$('.endTime_ampmEdit').val(endampm);
+    }
 	},
 
 	startDateE: function()
   {
     var filterId = Session.get("editFilterId");
-		var startDateE = AnalyzeFilter.find({_id: filterId}).fetch()[0].startDate_display;
-		$("#startDatepickerE").datepicker("setDate", startDateE);
-		//return startDateE;
+    if (filterId != null || filterId != undefined)
+    {
+  		var startDateE = AnalyzeFilter.find({_id: filterId}).fetch()[0].startDate_display;
+  		$("#startDatepickerE").datepicker("setDate", startDateE);
+    }
   },
 
   endDateE: function()
   {
     var filterId = Session.get("editFilterId");
-		var endDateE = AnalyzeFilter.find({_id: filterId}).fetch()[0].endDate_display;
-		$("#endDatepickerE").datepicker("setDate", endDateE);
-		//return endDateE;
+    if (filterId != null || filterId != undefined)
+    {
+		  var endDateE = AnalyzeFilter.find({_id: filterId}).fetch()[0].endDate_display;
+		  $("#endDatepickerE").datepicker("setDate", endDateE);
+    }
   }
 	
 });
