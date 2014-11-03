@@ -12,9 +12,13 @@
             <div class="col-md-12">
               <form>
                 <div class="row">
-                  <div class="form-group col-md-12">
-                    <label>Filter</label>
+                  <div class="form-group col-md-6">
+                    <label>Road</label>
                     <input id="roadName" type="text" class="form-control">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Filter Name</label>
+                    <input id="filterName" type="text" class="form-control">
                   </div>
                 </div>
                 <div class="row">
@@ -33,14 +37,14 @@
                 </div>
                 <div class="row">
                   <div class="col-md-6">
-                    <label>Start Date</label>
+                    <label>Start Date</label><br>
                     <input type="text" id="startDatepicker" readonly='readonly'>
                   </div>
                   <div class="col-md-6">
-                    <label>End Date</label>
+                    <label>End Date</label><br>
                     <input type="text" id="endDatepicker"  readonly='readonly'>
                   </div>
-                </div>
+                </div><br>
                 <div class="row">
                   <div class="col-md-6" aligh="center">
                     <label>Start Time</label>
@@ -120,9 +124,21 @@
                       <label>AM/PM</label>
                       <select selected class="endTime_ampm">
                         <option selected value="AM">AM</option>
-                        <option value="PM">PM</option> 
+                        <option value="PM">PM</option>
                       </select>
                     </div>
+                  </div><br>
+                  <div class="form-group col-md-6">
+                    <label>Line Color</label><br>
+                    <select class="filterColor">
+                      <option selected disabled value="graphColor">Color</option>
+                      <option value="red">red</option>
+                      <option value="green">green</option>
+                      <option value="blue">blue</option>
+                      <option value="orange">orange</option>
+                      <option value="purple">purple</option>
+                      <option value="blue">blue</option>
+                    </select>
                   </div>
                 </div>
               </form>

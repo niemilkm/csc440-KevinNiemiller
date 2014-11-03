@@ -26,14 +26,40 @@ Template.analyze.helpers(
 
     'click #addGraph': function()
     {
-      dataAndGraph();
+      addGraph();
     }
 };
 
-function dataAndGraph()
+function dataGraph()
 {
-  // var data1 = AnalyzeFilter.find();
-  // var lineData = [
+  var labels = ['Accident','Roadwork - Planned', 'Roadwork - Unplanned', 'Flooding', 'Snow/Ice', 'Debris', 'Disabled Vehicle', 'Other'];
+  var analyzeFilterDoc = AnalyzeFilter.findOne({_id: "8m5mFPdcDhkzpDkLa"}); //CHANGE THIS
+  var ydata = [
+                0,
+                analyzeFilterDoc.accidents,
+                analyzeFilterDoc.roadworkPlanned,
+                analyzeFilterDoc.roadworkUnplanned,
+                analyzeFilterDoc.flooding,
+                analyzeFilterDoc.snowIce,
+                analyzeFilterDoc.debris,
+                analyzeFilterDoc.disabledVehicle,
+                analyzeFilterDoc.other
+              ];
+  
+  var series1 = [];
+    for(var i =1; i <= 8; i ++) {
+        series1.push({
+            x: i, y: ydata[i]
+        });
+    }
+
+    return [
+        {
+            key: analyzeFilterDoc.filterName,
+            values: series1,
+            color: "#0000ff"
+        }
+    ];
 
 }
 
@@ -57,21 +83,25 @@ function myData() {
 
 function addGraph()
 {
+  var labelX = ['dd ', 'Accident','Roadwork - Planned', 'Roadwork - Unplanned', 'Flooding', 'Snow/Ice', 'Debris', 'Disabled Vehicle', 'Other'];
   nv.addGraph(function() {
     console.log("in addGraph nv");
       var chart = nv.models.lineChart();
 
       chart.xAxis
-          .axisLabel("X-axis Label");
+          .axisLabel("Category")
+          .tickFormat(function(d) { return labelX[d]; });
+          ;
 
       chart.yAxis
-          .axisLabel("Y-axis Label")
+          .axisLabel("Number of Events")
           .tickFormat(d3.format("d"))
           ;
 
       d3.select("svg")
-          .datum(myData())
-          .transition().duration(500).call(chart);
+          .datum(dataGraph())
+          .transition().duration(500).call(chart)
+          .style({'height': 999000});
 
       nv.utils.windowResize(
               function() {

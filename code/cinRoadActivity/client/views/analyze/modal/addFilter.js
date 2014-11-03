@@ -21,8 +21,9 @@ Template.addFilter.events =
 {
 	'click #addFilter_enter': function()
   {
+    var filterName  = $('#filterName').val().trim();
     var road  			= $('#roadName').val().trim();
-    var startMile 	    = $('#startMile').val().trim();
+    var startMile 	= $('#startMile').val().trim();
     var endMile 		= $('#endMile').val().trim();
     var startDateTime   = $( "#startDatepicker" ).datepicker('getDate');
     var startHr 		= $('.startTime_hr').val();
@@ -49,6 +50,7 @@ Template.addFilter.events =
     var endDateTime_display = endDate_display + " " + endTime_display;
 
     var filterDetails = {
+              filterName: filterName,
 							road: road,
 							startMile: startMile,
 							endMile: endMile,
@@ -56,19 +58,20 @@ Template.addFilter.events =
 							endDateTime_ISO: endDateTime_ISO,
 							startTime_display: startTime_display,
 							endTime_display: endTime_display,
-                            startDate_display: startDate_display,
-                            endDate_display: endDate_display,
+              startDate_display: startDate_display,
+              endDate_display: endDate_display,
 							startHr: startHr,
 							startMin: startMin,
 							startampm: startampm,
 							endHr: endHr,
 							endMin: endMin,
 							endampm: endampm,
-                            startDateTime_display: startDateTime_display,
-                            endDateTime_display: endDateTime_display
-    					};
+              startDateTime_display: startDateTime_display,
+              endDateTime_display: endDateTime_display
+    				};
  
     Meteor.call("insert_filterData", filterDetails)
+    $('#filterName').val('');
     $('#roadName').val('');
     $('#startMile').val('');
     $('#endMile').val('');
@@ -84,6 +87,7 @@ Template.addFilter.events =
   'click .modalCloseAdd': function()
   {
     console.log("add modal close");
+    $('#filterName').val('');
     $('#roadName').val('');
     $('#startMile').val('');
     $('#endMile').val('');
@@ -139,3 +143,4 @@ Template.addFilter.events =
     }
 
 }
+

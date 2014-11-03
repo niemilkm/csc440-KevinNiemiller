@@ -17,6 +17,13 @@ Template.editFilter.helpers(
     if (filterId != null || filterId != undefined)
 		  return AnalyzeFilter.find({_id: filterId}).fetch()[0].road;
 	},
+
+  filterInfoE: function()
+  {
+    var filterId = Session.get("editFilterId");
+    if (filterId != null || filterId != undefined)
+      return AnalyzeFilter.find({_id: filterId}).fetch()[0].filterName;
+  },
 	
 	startMileE: function()
 	{
@@ -92,6 +99,16 @@ Template.editFilter.helpers(
     }
 	},
 
+  graphColorE: function()
+  {
+    var filterId = Session.get("editFilterId");
+    if (filterId != null || filterId != undefined)
+    {
+      var graphColor = AnalyzeFilter.find({_id: filterId}).fetch()[0].graphColor;
+      $('').val(graphColor);
+    }
+  }
+
 	startDateE: function()
   {
     var filterId = Session.get("editFilterId");
@@ -99,6 +116,7 @@ Template.editFilter.helpers(
     {
   		var startDateE = AnalyzeFilter.find({_id: filterId}).fetch()[0].startDate_display;
   		$("#startDatepickerE").datepicker("setDate", startDateE);
+      return startDateE;
     }
   },
 
@@ -109,6 +127,7 @@ Template.editFilter.helpers(
     {
 		  var endDateE = AnalyzeFilter.find({_id: filterId}).fetch()[0].endDate_display;
 		  $("#endDatepickerE").datepicker("setDate", endDateE);
+      return endDateE;
     }
   }
 	
