@@ -33,6 +33,7 @@ Template.addFilter.events =
     var endMin 			= $('.endTime_min').val();
     var endampm		 	= $('.endTime_ampm').val();
     var endDateTime     = $( "#endDatepicker" ).datepicker('getDate');
+    var graphColor  = $('.filterColor').val();
 
     // var startTime_nonISO = "1970-01-01 " + startHr + ":" + startMin + ":00 " + startampm;
     // var endTime_nonISO = "1970-01-01 " + endHr + ":" + endMin + ":00 " + endampm;
@@ -48,6 +49,19 @@ Template.addFilter.events =
 
     var startDateTime_display = startDate_display + " " + startTime_display;
     var endDateTime_display = endDate_display + " " + endTime_display;
+
+    if (graphColor == "red")
+      graphColorCode = "#FF0000";
+    else if (graphColor == "green")
+      graphColorCode = "#33FF00";
+    else if (graphColor == "blue")
+      graphColorCode = "#0000FF";
+    else if (graphColor == "orange")
+      graphColorCode = "#FF8000";
+    else if (graphColor == "purple")
+      graphColorCode = "#B404AE";
+    else if (graphColor == "blue")
+      graphColorCode = "#0101DF";
 
     var filterDetails = {
               filterName: filterName,
@@ -67,10 +81,12 @@ Template.addFilter.events =
 							endMin: endMin,
 							endampm: endampm,
               startDateTime_display: startDateTime_display,
-              endDateTime_display: endDateTime_display
+              endDateTime_display: endDateTime_display,
+              graphColor: graphColor,
+              graphColorCode: graphColorCode
     				};
  
-    Meteor.call("insert_filterData", filterDetails)
+    var docId = Meteor.call("insert_filterData", filterDetails);
     $('#filterName').val('');
     $('#roadName').val('');
     $('#startMile').val('');
@@ -82,6 +98,7 @@ Template.addFilter.events =
     $('.endTime_min').val('min');
     $('.endTime_ampm').val('AM');
     $('#addFilter').modal('hide');
+    addGraph(docId);
   },
 
   'click .modalCloseAdd': function()

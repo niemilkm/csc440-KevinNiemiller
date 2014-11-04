@@ -105,9 +105,9 @@ Template.editFilter.helpers(
     if (filterId != null || filterId != undefined)
     {
       var graphColor = AnalyzeFilter.find({_id: filterId}).fetch()[0].graphColor;
-      $('').val(graphColor);
+      $('.filterColor').val(graphColor);
     }
-  }
+  },
 
 	startDateE: function()
   {

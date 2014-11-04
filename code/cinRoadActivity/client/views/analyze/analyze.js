@@ -24,16 +24,23 @@ Template.analyze.helpers(
       Meteor.call("delete_filterData", this._id);
     },
 
-    'click #addGraph': function()
+    'click #showGraph': function()
     {
-      addGraph();
+      AnalyzeFilter.find({userId: Meteor.userId()}).forEach(function(myDoc)
+      {
+        showGraph(myDoc._id);
+      });
+      // while (analyzeFilter_cursor.hasNext())
+      // {
+      //   addGraph(analyzeFilter_cursor.next()._id);
+      // }
     }
 };
 
-function dataGraph()
+function dataGraph(docId)
 {
   var labels = ['Accident','Roadwork - Planned', 'Roadwork - Unplanned', 'Flooding', 'Snow/Ice', 'Debris', 'Disabled Vehicle', 'Other'];
-  var analyzeFilterDoc = AnalyzeFilter.findOne({_id: "8m5mFPdcDhkzpDkLa"}); //CHANGE THIS
+  var analyzeFilterDoc = AnalyzeFilter.findOne({_id: docId});
   var ydata = [
                 0,
                 analyzeFilterDoc.accidents,
@@ -57,31 +64,31 @@ function dataGraph()
         {
             key: analyzeFilterDoc.filterName,
             values: series1,
-            color: "#0000ff"
+            color: analyzeFilterDoc.graphColorCode
         }
     ];
 
 }
 
-function myData() {
-    console.log("in myData");
-    var series1 = [];
-    for(var i =1; i < 8; i ++) {
-        series1.push({
-            x: i, y: 100 / i
-        });
-    }
+// function myData() {
+//     console.log("in myData");
+//     var series1 = [];
+//     for(var i =1; i < 8; i ++) {
+//         series1.push({
+//             x: i, y: 100 / i
+//         });
+//     }
 
-    return [
-        {
-            key: "Series #1",
-            values: series1,
-            color: "#0000ff"
-        }
-    ];
-}
+//     return [
+//         {
+//             key: "Series #1",
+//             values: series1,
+//             color: "#0000ff"
+//         }
+//     ];
+// }
 
-function addGraph()
+function showGraph(docId)
 {
   var labelX = ['dd ', 'Accident','Roadwork - Planned', 'Roadwork - Unplanned', 'Flooding', 'Snow/Ice', 'Debris', 'Disabled Vehicle', 'Other'];
   nv.addGraph(function() {
@@ -99,7 +106,7 @@ function addGraph()
           ;
 
       d3.select("svg")
-          .datum(dataGraph())
+          .datum(dataGraph(docId))
           .transition().duration(500).call(chart)
           .style({'height': 999000});
 
