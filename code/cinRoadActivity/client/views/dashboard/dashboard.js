@@ -16,11 +16,6 @@ Template.dashboard.helpers(
     var filterStartDate_bool = !(filterStartDate == undefined || filterStartDate == null);
     var filterEndDate_bool = !(filterEndDate == undefined || filterEndDate == null);
 
-    console.log("filterCategory & filterStartDate & filterEndDate: " + filterCategory + " - " + filterStartDate + " - " + filterEndDate);
-    console.log("cat_bool, startDate_bool, endDate_bool:  " + filterCategory_bool + ", " + filterStartDate_bool + ", " + filterEndDate_bool);
-    console.log(filterStartDate instanceof Date);
-    console.log(filterEndDate instanceof Date);
-
     if (filterCategory == "all" || !filterCategory_bool)
     {
       if (filterStartDate_bool && filterEndDate_bool)
@@ -107,7 +102,7 @@ Template.dashboard.events =
         else
           console.log("importData complete");
       });
-      console.log("dashboardClick importData complete");
+      console.log("dashboard - User Click importData complete");
     },
 
     'click button.filterToday': function()

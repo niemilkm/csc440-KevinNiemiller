@@ -220,6 +220,5 @@ Meteor.methods({
 			startDateTime_ISO: {$gte: startTimeDate_ISO},
 			startDateTime_ISO: {$lte: endTimeDate_ISO}
 		}).count();
-		console.log(accidents);
 	}
 });

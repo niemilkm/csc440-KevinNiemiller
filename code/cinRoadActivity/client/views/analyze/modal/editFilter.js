@@ -14,37 +14,37 @@ Template.editFilter.helpers(
 	roadInfoE: function()
 	{
 		var filterId = Session.get("editFilterId");
-    if (filterId != null || filterId != undefined)
-		  return AnalyzeFilter.find({_id: filterId}).fetch()[0].road;
+    if (filterId != null && filterId != undefined)
+		  return AnalyzeFilter.findOne({_id: filterId}).road;
 	},
 
   filterInfoE: function()
   {
     var filterId = Session.get("editFilterId");
-    if (filterId != null || filterId != undefined)
-      return AnalyzeFilter.find({_id: filterId}).fetch()[0].filterName;
+    if (filterId != null && filterId != undefined)
+      return AnalyzeFilter.findOne({_id: filterId}).filterName;
   },
 	
 	startMileE: function()
 	{
 		var filterId = Session.get("editFilterId");
-    if (filterId != null || filterId != undefined)
-		  return AnalyzeFilter.find({_id: filterId}).fetch()[0].startMile;
+    if (filterId != null && filterId != undefined)
+		  return AnalyzeFilter.findOne({_id: filterId}).startMile;
 	},
 
 	endMileE: function()
 	{
 		var filterId = Session.get("editFilterId");
-    if (filterId != null || filterId != undefined)
-		  return AnalyzeFilter.find({_id: filterId}).fetch()[0].endMile;
+    if (filterId != null && filterId != undefined)
+		  return AnalyzeFilter.findOne({_id: filterId}).endMile;
 	},
 
 	startHrE: function()
 	{
 		var filterId = Session.get("editFilterId");
-    if (filterId != null || filterId != undefined)
+    if (filterId != null && filterId != undefined)
     {
-		  var startHr = AnalyzeFilter.find({_id: filterId}).fetch()[0].startHr;
+		  var startHr = AnalyzeFilter.findOne({_id: filterId}).startHr;
 		  $('.startTime_hrEdit').val(startHr);
     }
 	},
@@ -52,9 +52,9 @@ Template.editFilter.helpers(
 	startMinE: function()
 	{
 		var filterId = Session.get("editFilterId");
-    if (filterId != null || filterId != undefined)
+    if (filterId != null && filterId != undefined)
     {
-		  var startMin = AnalyzeFilter.find({_id: filterId}).fetch()[0].startMin;
+		  var startMin = AnalyzeFilter.findOne({_id: filterId}).startMin;
 		  $('.startTime_minEdit').val(startMin);
     }
 	},
@@ -62,9 +62,9 @@ Template.editFilter.helpers(
 	startampmE: function()
 	{
 		var filterId = Session.get("editFilterId");
-    if (filterId != null || filterId != undefined)
+    if (filterId != null && filterId != undefined)
     {
-		  var startampm = AnalyzeFilter.find({_id: filterId}).fetch()[0].startampm;
+		  var startampm = AnalyzeFilter.findOne({_id: filterId}).startampm;
 		  $('.startTime_ampmEdit').val(startampm);
     }
 	},
@@ -72,9 +72,9 @@ Template.editFilter.helpers(
 	endHrE: function()
 	{
 		var filterId = Session.get("editFilterId");
-    if (filterId != null || filterId != undefined)
+    if (filterId != null && filterId != undefined)
     {
-		  var endHr = AnalyzeFilter.find({_id: filterId}).fetch()[0].endHr;
+		  var endHr = AnalyzeFilter.findOne({_id: filterId}).endHr;
 		  $('.endTime_hrEdit').val(endHr);
     }
 	},
@@ -82,9 +82,9 @@ Template.editFilter.helpers(
 	endMinE: function()
 	{
 		var filterId = Session.get("editFilterId");
-    if (filterId != null || filterId != undefined)
+    if (filterId != null && filterId != undefined)
     {
-		  var endMin = AnalyzeFilter.find({_id: filterId}).fetch()[0].endMin;
+		  var endMin = AnalyzeFilter.findOne({_id: filterId}).endMin;
 		  $('.endTime_minEdit').val(endMin);
     }
 	},
@@ -92,9 +92,9 @@ Template.editFilter.helpers(
 	endampmE: function()
 	{
 		var filterId = Session.get("editFilterId");
-    if (filterId != null || filterId != undefined)
+    if (filterId != null && filterId != undefined)
     {
-  		var endampm = AnalyzeFilter.find({_id: filterId}).fetch()[0].endampm;
+  		var endampm = AnalyzeFilter.findOne({_id: filterId}).endampm;
   		$('.endTime_ampmEdit').val(endampm);
     }
 	},
@@ -102,32 +102,35 @@ Template.editFilter.helpers(
   graphColorE: function()
   {
     var filterId = Session.get("editFilterId");
-    if (filterId != null || filterId != undefined)
+    if (filterId != null && filterId != undefined)
     {
-      var graphColor = AnalyzeFilter.find({_id: filterId}).fetch()[0].graphColor;
-      $('.filterColor').val(graphColor);
+      var graphColor = AnalyzeFilter.findOne({_id: filterId}).graphColor;
+      $('.filterColorE').val(graphColor);
     }
   },
 
 	startDateE: function()
   {
     var filterId = Session.get("editFilterId");
-    if (filterId != null || filterId != undefined)
+    if (filterId != null && filterId != undefined)
     {
-  		var startDateE = AnalyzeFilter.find({_id: filterId}).fetch()[0].startDate_display;
-  		$("#startDatepickerE").datepicker("setDate", startDateE);
-      return startDateE;
+  		var startDateE = AnalyzeFilter.findOne({_id: filterId}).startDate_display;
+      //var dateFormatted = new Date(startDateE);
+      //dateFormatted = dateFormatted.getMonth() + 1 + "/" + dateFormatted.getDate() + "/" + dateFormatted.getFullYear();
+      //$("#startDatepickerE").datepicker().val(dateFormatted);
+      $("#startDatepickerE").datepicker().val(startDateE);
     }
   },
 
   endDateE: function()
   {
     var filterId = Session.get("editFilterId");
-    if (filterId != null || filterId != undefined)
+    if (filterId != null && filterId != undefined)
     {
-		  var endDateE = AnalyzeFilter.find({_id: filterId}).fetch()[0].endDate_display;
-		  $("#endDatepickerE").datepicker("setDate", endDateE);
-      return endDateE;
+		  var endDateE = AnalyzeFilter.findOne({_id: filterId}).endDate_display;
+      $("#endDatepickerE").datepicker().val(endDateE);
+		  //$("#endDatepickerE").datepicker("setDate", endDateE);
+      //return endDateE;
     }
   }
 	
@@ -139,39 +142,66 @@ Template.editFilter.events =
   {
 		var filterId = Session.get("editFilterId");
 
+    var filterName  = $('#filterNameE').val().trim();
     var road  			= $('#roadNameEdit').val().trim();
     var startMile 	= $('#startMileEdit').val().trim();
     var endMile 		= $('#endMileEdit').val().trim();
     var startHr 		= $('.startTime_hrEdit').val();
     var startMin 		= $('.startTime_minEdit').val();
     var startampm 	= $('.startTime_ampmEdit').val();
+    var startDateTime   = $( "#startDatepickerE" ).datepicker('getDate');
     var endHr 			= $('.endTime_hrEdit').val();
     var endMin 			= $('.endTime_minEdit').val();
     var endampm		 	= $('.endTime_ampmEdit').val();
-
-    var startTime_nonISO = "1970-01-01 " + startHr + ":" + startMin + ":00 " + startampm;
-    var endTime_nonISO = "1970-01-01 " + endHr + ":" + endMin + ":00 " + endampm;
+    var endDateTime = $( "#endDatepickerE" ).datepicker('getDate');
+    var graphColor  = $('.filterColorE').val();
 
     var startTime_display = startHr + ":" + startMin + " " + startampm;
     var endTime_display = endHr + ":" + endMin + " " + endampm;
 
-    var startTime = new Date(startTime_nonISO);
-    var endTime = new Date(endTime_nonISO);
+    var startDate_display = startDateTime.getMonth() + 1 + "/" + startDateTime.getDate() + "/" + startDateTime.getFullYear();
+    var endDate_display = endDateTime.getMonth() + 1 + "/" + endDateTime.getDate() + "/" + endDateTime.getFullYear();
+
+    var startDateTime_ISO = new Date(startDate_display + " " + startTime_display);
+    var endDateTime_ISO = new Date(endDate_display + " " + endTime_display);
+
+    var startDateTime_display = startDate_display + " " + startTime_display;
+    var endDateTime_display = endDate_display + " " + endTime_display;
+
+    if (graphColor == "red")
+      graphColorCode = "#FF0000";
+    else if (graphColor == "green")
+      graphColorCode = "#33FF00";
+    else if (graphColor == "blue")
+      graphColorCode = "#0000FF";
+    else if (graphColor == "orange")
+      graphColorCode = "#FF8000";
+    else if (graphColor == "purple")
+      graphColorCode = "#B404AE";
+    else if (graphColor == "blue")
+      graphColorCode = "#0101DF";
 
     var filterDetails = {
-    										road: road,
-    										startMile: startMile,
-    										endMile: endMile,
-    										startTime: startTime,
-    										endTime: endTime,
-    										startTime_display: startTime_display,
-    										endTime_display: endTime_display,
-    										startHr: startHr,
-    										startMin: startMin,
-    										startampm: startampm,
-    										endHr: endHr,
-    										endMin: endMin,
-    										endampm: endampm
+    										  filterName: filterName,
+                          road: road,
+                          startMile: startMile,
+                          endMile: endMile,
+                          startDateTime_ISO: startDateTime_ISO,
+                          endDateTime_ISO: endDateTime_ISO,
+                          startTime_display: startTime_display,
+                          endTime_display: endTime_display,
+                          startDate_display: startDate_display,
+                          endDate_display: endDate_display,
+                          startHr: startHr,
+                          startMin: startMin,
+                          startampm: startampm,
+                          endHr: endHr,
+                          endMin: endMin,
+                          endampm: endampm,
+                          startDateTime_display: startDateTime_display,
+                          endDateTime_display: endDateTime_display,
+                          graphColor: graphColor,
+                          graphColorCode: graphColorCode
     									};
  
     Meteor.call("update_filterData", filterDetails, filterId)
@@ -205,7 +235,6 @@ Template.editFilter.events =
 
     'click #endDatepickerE': function(evt)
     {
-      console.log("endDatepickerE")
       $( "#endDatepickerE" ).datepicker({
         onSelect: function() {
           var endDate = $( "#endDatepickerE" ).datepicker('getDate');

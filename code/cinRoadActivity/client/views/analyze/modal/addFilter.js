@@ -98,12 +98,10 @@ Template.addFilter.events =
     $('.endTime_min').val('min');
     $('.endTime_ampm').val('AM');
     $('#addFilter').modal('hide');
-    addGraph(docId);
   },
 
   'click .modalCloseAdd': function()
   {
-    console.log("add modal close");
     $('#filterName').val('');
     $('#roadName').val('');
     $('#startMile').val('');

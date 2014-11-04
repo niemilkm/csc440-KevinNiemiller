@@ -38,11 +38,11 @@
                 <div class="row">
                   <div class="col-md-6">
                     <label>Start Date</label><br>
-                    <input type="text" id="startDatepickerE" placeholder="{{startDateE}}">
+                    <input type="text" id="startDatepickerE" placeholder="{{startDateE}}" value="{{startDateE}}">
                   </div>
                   <div class="col-md-6">
                     <label>End Date</label><br>
-                    <input type="text" id="endDatepickerE" placeholder="{{endDateE}}">
+                    <input type="text" id="endDatepickerE" placeholder="{{endDateE}}" value="{{endDateE}}">
                   </div>
                 </div>
                 <div class="row">
@@ -131,8 +131,8 @@
                 </div><br>
                 <div class="form-group col-md-6">
                     <label>Line Color</label><br>
-                    <select class="filterColor">
-                      <option selected disabled value="{{graphColorE}}">Color</option>
+                    <select class="filterColorE" value="{{graphColorE}}">
+                      <option selected disabled>Color</option>
                       <option value="red">red</option>
                       <option value="green">green</option>
                       <option value="blue">blue</option>

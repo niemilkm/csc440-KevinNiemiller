@@ -12,7 +12,6 @@
   {
     'click .openEditRoadModal': function()
     {
-      console.log("open edit modal: " + this._id);
       Session.set("editRoadId", this._id);
       $("#editRoad").modal('show');
     },

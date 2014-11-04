@@ -26,10 +26,11 @@ Template.analyze.helpers(
 
     'click #showGraph': function()
     {
-      AnalyzeFilter.find({userId: Meteor.userId()}).forEach(function(myDoc)
-      {
-        showGraph(myDoc._id);
-      });
+      //var count = 0;
+      //AnalyzeFilter.find({userId: Meteor.userId()}).forEach(function(myDoc)
+      //{
+        showGraph();
+      //});
       // while (analyzeFilter_cursor.hasNext())
       // {
       //   addGraph(analyzeFilter_cursor.next()._id);
@@ -37,7 +38,49 @@ Template.analyze.helpers(
     }
 };
 
-function dataGraph(docId)
+function dataGraph()
+{
+  var labels = ['Accident','Roadwork - Planned', 'Roadwork - Unplanned', 'Flooding', 'Snow/Ice', 'Debris', 'Disabled Vehicle', 'Other'];
+  var xyData = [];
+  var count = 0;
+  AnalyzeFilter.find({userId: Meteor.userId()}).forEach(function(myDoc)
+  {
+    var ydata = [
+                0,
+                myDoc.accidents,
+                myDoc.roadworkPlanned,
+                myDoc.roadworkUnplanned,
+                myDoc.flooding,
+                myDoc.snowIce,
+                myDoc.debris,
+                myDoc.disabledVehicle,
+                myDoc.other
+              ];
+    var series1 = [];
+    for(var i =1; i <= 8; i ++) {
+        series1.push({
+            x: i, y: ydata[i]
+        });
+    }
+
+    var xyDataInstance =
+                          {
+                            key: myDoc.filterName,
+                            values: series1,
+                            color: myDoc.graphColorCode
+                          }
+
+    xyData[count] = xyDataInstance;
+
+    count++;
+                        
+  });
+
+    return xyData
+
+}
+
+function dataGraph_works(docId)
 {
   var labels = ['Accident','Roadwork - Planned', 'Roadwork - Unplanned', 'Flooding', 'Snow/Ice', 'Debris', 'Disabled Vehicle', 'Other'];
   var analyzeFilterDoc = AnalyzeFilter.findOne({_id: docId});
@@ -88,11 +131,10 @@ function dataGraph(docId)
 //     ];
 // }
 
-function showGraph(docId)
+function showGraph()
 {
   var labelX = ['dd ', 'Accident','Roadwork - Planned', 'Roadwork - Unplanned', 'Flooding', 'Snow/Ice', 'Debris', 'Disabled Vehicle', 'Other'];
   nv.addGraph(function() {
-    console.log("in addGraph nv");
       var chart = nv.models.lineChart();
 
       chart.xAxis
@@ -106,7 +148,7 @@ function showGraph(docId)
           ;
 
       d3.select("svg")
-          .datum(dataGraph(docId))
+          .datum(dataGraph())
           .transition().duration(500).call(chart)
           .style({'height': 999000});
 
