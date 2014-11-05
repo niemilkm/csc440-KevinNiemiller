@@ -26,15 +26,7 @@ Template.analyze.helpers(
 
     'click #showGraph': function()
     {
-      //var count = 0;
-      //AnalyzeFilter.find({userId: Meteor.userId()}).forEach(function(myDoc)
-      //{
-        showGraph();
-      //});
-      // while (analyzeFilter_cursor.hasNext())
-      // {
-      //   addGraph(analyzeFilter_cursor.next()._id);
-      // }
+      showGraph();
     }
 };
 
@@ -133,7 +125,7 @@ function dataGraph_works(docId)
 
 function showGraph()
 {
-  var labelX = ['dd ', 'Accident','Roadwork - Planned', 'Roadwork - Unplanned', 'Flooding', 'Snow/Ice', 'Debris', 'Disabled Vehicle', 'Other'];
+  var labelX = ['', 'Accident','Roadwork - Planned', 'Roadwork - Unplanned', 'Flooding', 'Snow/Ice', 'Debris', 'Disabled Vehicle', 'Other'];
   nv.addGraph(function() {
       var chart = nv.models.lineChart();
 
@@ -150,7 +142,7 @@ function showGraph()
       d3.select("svg")
           .datum(dataGraph())
           .transition().duration(500).call(chart)
-          .style({'height': 999000});
+          ;
 
       nv.utils.windowResize(
               function() {

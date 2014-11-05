@@ -62,6 +62,8 @@ Template.addFilter.events =
       graphColorCode = "#B404AE";
     else if (graphColor == "blue")
       graphColorCode = "#0101DF";
+    else
+      graphColorCode = "#FF0000";
 
     var filterDetails = {
               filterName: filterName,

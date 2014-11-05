@@ -160,11 +160,12 @@ Meteor.methods({
 		var other = RoadActivity.find({
 			Category: "Other",
 			Road: data.road,
-			startMile: {$gte: data.startMile},
-			endMile: {$lte: data.endMile},
-			startDateTime_ISO: {$gte: data.startTimeDate_ISO},
-			startDateTime_ISO: {$lte: data.endDateTime_ISO}
+			//startMile: {$gte: Number(data.startMile)},
+			//endMile: {$lte: Number(data.endMile)},
+			//startDateTime_ISO: {$gte: data.startDateTime_ISO},
+			//startDateTime_ISO: {$lte: data.endDateTime_ISO}
 		}).count();
+		console.log(data.road);
 
 		AnalyzeFilter.update(
 			{_id: id},
@@ -206,6 +207,10 @@ Meteor.methods({
 
 	analyzeFilter_getXYData_asArray: function(docId) {
 		
+	},
+
+	update_queryCounts: function() {
+
 	},
 
 	testInAnalyzeFilter: function() {
