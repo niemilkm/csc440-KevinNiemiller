@@ -208,6 +208,7 @@ Template.editFilter.events =
  
     Meteor.call("update_filterData", filterDetails, filterId)
     $('#editFilter').modal('hide');
+    Session.set("updateGraph", true);
   },
 
   'click .editModalClose': function()

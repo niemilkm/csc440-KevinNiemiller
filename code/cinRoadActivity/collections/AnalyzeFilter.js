@@ -5,8 +5,8 @@ Meteor.methods({
 		var accidents = RoadActivity.find({
 			Category: "Accident",
 			Road: data.road,
-			startMile: {$gte: data.startMile},
-			endMile: {$lte: data.endMile},
+			startMile: {$gte: Number(data.startMile)},
+			endMile: {$lte: Number(data.endMile)},
 			startDateTime_ISO: {$gte: data.startDateTime_ISO},
 			startDateTime_ISO: {$lte: data.endDateTime_ISO}
 		}).count();
@@ -21,49 +21,49 @@ Meteor.methods({
 		var roadworkUnplanned = RoadActivity.find({
 			Category: "Roadwork - Unplanned",
 			Road: data.road,
-			startMile: {$gte: data.startMile},
-			endMile: {$lte: data.endMile},
+			startMile: {$gte: Number(data.startMile)},
+			endMile: {$lte: Number(data.endMile)},
 			startDateTime_ISO: {$gte: data.startDateTime_ISO},
 			startDateTime_ISO: {$lte: data.endDateTime_ISO}
 		}).count();
 		var flooding = RoadActivity.find({
 			Category: "Flooding",
 			Road: data.road,
-			startMile: {$gte: data.startMile},
-			endMile: {$lte: data.endMile},
+			startMile: {$gte: Number(data.startMile)},
+			endMile: {$lte: Number(data.endMile)},
 			startDateTime_ISO: {$gte: data.startDateTime_ISO},
 			startDateTime_ISO: {$lte: data.endDateTime_ISO}
 		}).count();
 		var snowIce = RoadActivity.find({
 			Category: "Snow/Ice",
 			Road: data.road,
-			startMile: {$gte: data.startMile},
-			endMile: {$lte: data.endMile},
+			startMile: {$gte: Number(data.startMile)},
+			endMile: {$lte: Number(data.endMile)},
 			startDateTime_ISO: {$gte: data.startDateTime_ISO},
 			startDateTime_ISO: {$lte: data.endDateTime_ISO}
 		}).count();
 		var debris = RoadActivity.find({
 			Category: "Debris",
 			Road: data.road,
-			startMile: {$gte: data.startMile},
-			endMile: {$lte: data.endMile},
+			startMile: {$gte: Number(data.startMile)},
+			endMile: {$lte: Number(data.endMile)},
 			startDateTime_ISO: {$gte: data.startDateTime_ISO},
 			startDateTime_ISO: {$lte: data.endDateTime_ISO}
 		}).count();
 		var disabledVehicle = RoadActivity.find({
 			Category: "Disabled Vehicle",
 			Road: data.road,
-			startMile: {$gte: data.startMile},
-			endMile: {$lte: data.endMile},
-			startDateTime_ISO: {$gte: data.startTimeDate_ISO},
+			startMile: {$gte: Number(data.startMile)},
+			endMile: {$lte: Number(data.endMile)},
+			startDateTime_ISO: {$gte: data.startDateTime_ISO},
 			startDateTime_ISO: {$lte: data.endDateTime_ISO}
 		}).count();
 		var other = RoadActivity.find({
 			Category: "Other",
 			Road: data.road,
-			startMile: {$gte: data.startMile},
-			endMile: {$lte: data.endMile},
-			startDateTime_ISO: {$gte: data.startTimeDate_ISO},
+			startMile: {$gte: Number(data.startMile)},
+			endMile: {$lte: Number(data.endMile)},
+			startDateTime_ISO: {$gte: data.startDateTime_ISO},
 			startDateTime_ISO: {$lte: data.endDateTime_ISO}
 		}).count();
 
@@ -104,8 +104,8 @@ Meteor.methods({
 		var accidents = RoadActivity.find({
 			Category: "Accident",
 			Road: data.road,
-			startMile: {$gte: data.startMile},
-			endMile: {$lte: data.endMile},
+			startMile: {$gte: Number(data.startMile)},
+			endMile: {$lte: Number(data.endMile)},
 			startDateTime_ISO: {$gte: data.startDateTime_ISO},
 			startDateTime_ISO: {$lte: data.endDateTime_ISO}
 		}).count();
@@ -120,52 +120,51 @@ Meteor.methods({
 		var roadworkUnplanned = RoadActivity.find({
 			Category: "Roadwork - Unplanned",
 			Road: data.road,
-			startMile: {$gte: data.startMile},
-			endMile: {$lte: data.endMile},
+			startMile: {$gte: Number(data.startMile)},
+			endMile: {$lte: Number(data.endMile)},
 			startDateTime_ISO: {$gte: data.startDateTime_ISO},
 			startDateTime_ISO: {$lte: data.endDateTime_ISO}
 		}).count();
 		var flooding = RoadActivity.find({
 			Category: "Flooding",
 			Road: data.road,
-			startMile: {$gte: data.startMile},
-			endMile: {$lte: data.endMile},
+			startMile: {$gte: Number(data.startMile)},
+			endMile: {$lte: Number(data.endMile)},
 			startDateTime_ISO: {$gte: data.startDateTime_ISO},
 			startDateTime_ISO: {$lte: data.endDateTime_ISO}
 		}).count();
 		var snowIce = RoadActivity.find({
 			Category: "Snow/Ice",
 			Road: data.road,
-			startMile: {$gte: data.startMile},
-			endMile: {$lte: data.endMile},
+			startMile: {$gte: Number(data.startMile)},
+			endMile: {$lte: Number(data.endMile)},
 			startDateTime_ISO: {$gte: data.startDateTime_ISO},
 			startDateTime_ISO: {$lte: data.endDateTime_ISO}
 		}).count();
 		var debris = RoadActivity.find({
 			Category: "Debris",
 			Road: data.road,
-			startMile: {$gte: data.startMile},
-			endMile: {$lte: data.endMile},
+			startMile: {$gte: Number(data.startMile)},
+			endMile: {$lte: Number(data.endMile)},
 			startDateTime_ISO: {$gte: data.startDateTime_ISO},
 			startDateTime_ISO: {$lte: data.endDateTime_ISO}
 		}).count();
 		var disabledVehicle = RoadActivity.find({
 			Category: "Disabled Vehicle",
 			Road: data.road,
-			startMile: {$gte: data.startMile},
-			endMile: {$lte: data.endMile},
-			startDateTime_ISO: {$gte: data.startTimeDate_ISO},
+			startMile: {$gte: Number(data.startMile)},
+			endMile: {$lte: Number(data.endMile)},
+			startDateTime_ISO: {$gte: data.startDateTime_ISO},
 			startDateTime_ISO: {$lte: data.endDateTime_ISO}
 		}).count();
 		var other = RoadActivity.find({
 			Category: "Other",
 			Road: data.road,
-			//startMile: {$gte: Number(data.startMile)},
-			//endMile: {$lte: Number(data.endMile)},
-			//startDateTime_ISO: {$gte: data.startDateTime_ISO},
-			//startDateTime_ISO: {$lte: data.endDateTime_ISO}
+			startMile: {$gte: Number(data.startMile)},
+			endMile: {$lte: Number(data.endMile)},
+			startDateTime_ISO: {$gte: data.startDateTime_ISO},
+			startDateTime_ISO: {$lte: data.endDateTime_ISO}
 		}).count();
-		console.log(data.road);
 
 		AnalyzeFilter.update(
 			{_id: id},

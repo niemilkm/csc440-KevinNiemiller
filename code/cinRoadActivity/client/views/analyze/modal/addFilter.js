@@ -100,6 +100,7 @@ Template.addFilter.events =
     $('.endTime_min').val('min');
     $('.endTime_ampm').val('AM');
     $('#addFilter').modal('hide');
+    Session.set("updateGraph", true);
   },
 
   'click .modalCloseAdd': function()

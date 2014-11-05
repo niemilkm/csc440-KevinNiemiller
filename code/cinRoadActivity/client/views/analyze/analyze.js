@@ -1,5 +1,6 @@
 Template.analyze.rendered = function()
 {
+  Session.set("updateGraph", true);
 }
 
 Template.analyze.helpers(
@@ -7,6 +8,17 @@ Template.analyze.helpers(
     filterInfo: function()
     {
       return AnalyzeFilter.find({userId: Meteor.userId()});
+    },
+
+    updateGraph: function()
+    {
+      console.log(Session.get("updateGraph"));
+      if (Session.get("updateGraph"))
+      {
+        showGraph();
+        Session.set("updateGraph", false);
+      }
+      return "";
     }
   });
 
@@ -22,12 +34,9 @@ Template.analyze.helpers(
     'click .deleteFilter': function()
     {
       Meteor.call("delete_filterData", this._id);
+      showGraph();
     },
 
-    'click #showGraph': function()
-    {
-      showGraph();
-    }
 };
 
 function dataGraph()
@@ -72,62 +81,17 @@ function dataGraph()
 
 }
 
-function dataGraph_works(docId)
-{
-  var labels = ['Accident','Roadwork - Planned', 'Roadwork - Unplanned', 'Flooding', 'Snow/Ice', 'Debris', 'Disabled Vehicle', 'Other'];
-  var analyzeFilterDoc = AnalyzeFilter.findOne({_id: docId});
-  var ydata = [
-                0,
-                analyzeFilterDoc.accidents,
-                analyzeFilterDoc.roadworkPlanned,
-                analyzeFilterDoc.roadworkUnplanned,
-                analyzeFilterDoc.flooding,
-                analyzeFilterDoc.snowIce,
-                analyzeFilterDoc.debris,
-                analyzeFilterDoc.disabledVehicle,
-                analyzeFilterDoc.other
-              ];
-  
-  var series1 = [];
-    for(var i =1; i <= 8; i ++) {
-        series1.push({
-            x: i, y: ydata[i]
-        });
-    }
-
-    return [
-        {
-            key: analyzeFilterDoc.filterName,
-            values: series1,
-            color: analyzeFilterDoc.graphColorCode
-        }
-    ];
-
-}
-
-// function myData() {
-//     console.log("in myData");
-//     var series1 = [];
-//     for(var i =1; i < 8; i ++) {
-//         series1.push({
-//             x: i, y: 100 / i
-//         });
-//     }
-
-//     return [
-//         {
-//             key: "Series #1",
-//             values: series1,
-//             color: "#0000ff"
-//         }
-//     ];
-// }
-
 function showGraph()
 {
   var labelX = ['', 'Accident','Roadwork - Planned', 'Roadwork - Unplanned', 'Flooding', 'Snow/Ice', 'Debris', 'Disabled Vehicle', 'Other'];
   nv.addGraph(function() {
-      var chart = nv.models.lineChart();
+      var chart = nv.models.lineChart()
+        .margin({left: 100}) 
+        .useInteractiveGuideline(true)
+        .showLegend(true)       //Show the legend, allowing users to turn on/off line series.
+        .showYAxis(true)        //Show the y-axis
+        .showXAxis(true)        //Show the x-axis
+        ;
 
       chart.xAxis
           .axisLabel("Category")
