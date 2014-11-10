@@ -2,6 +2,7 @@
   "packages": {
     "xml2js": {},
     "jquery-ui": {},
-    "jquery-ui-bootstrap": {}
+    "jquery-ui-bootstrap": {},
+    "mailchimp": {}
   }
 }

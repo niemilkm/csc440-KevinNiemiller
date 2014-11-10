@@ -1,0 +1,29 @@
+<template name="subscriptionSettings">
+ <!-- Add Fields Modal -->
+  <div class="modal fade in" id="subscriptionSettings" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close modalCloseAdd" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel" data-target=".bs-example-modal-lg">Subscription Settings</h4>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="row">
+              <div class="form-group btn-group col-md-12">
+                <div class="btn-group subscriptionValue">
+                  <label><input id="subscriptionTrue" type="radio" name="subscribe" value="true" {{isActiveSub}}>    Subscribe</label><br>
+                  <label><input type="radio" id="subscriptionFalse" name="subscribe" value="false" {{isActiveUnsub}}>    Unsubscribe</label>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default modalClose" data-dismiss="modal">Cancel</button>
+          <button type="button" id="subscriptionSettings_enter" class="btn btn-primary">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

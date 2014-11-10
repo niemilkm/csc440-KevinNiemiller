@@ -4,7 +4,8 @@
     "basePackages": {
       "xml2js": {},
       "jquery-ui": {},
-      "jquery-ui-bootstrap": {}
+      "jquery-ui-bootstrap": {},
+      "mailchimp": {}
     },
     "packages": {
       "xml2js": {
@@ -21,6 +22,11 @@
         "git": "https://github.com/TimHeckel/meteor-jquery-ui-bootstrap.git",
         "tag": "v0.1.2",
         "commit": "fa742a85639307003e105898e15b631394b63509"
+      },
+      "mailchimp": {
+        "git": "https://github.com/MiroHibler/meteor-mailchimp.git",
+        "tag": "v0.4.2",
+        "commit": "7d100e96b37eb931f4e1d9544da677bb43fe8b5b"
       },
       "blocking": {
         "git": "https://github.com/peerlibrary/meteor-blocking.git",

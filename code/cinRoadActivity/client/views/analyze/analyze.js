@@ -12,7 +12,6 @@ Template.analyze.helpers(
 
     updateGraph: function()
     {
-      console.log(Session.get("updateGraph"));
       if (Session.get("updateGraph"))
       {
         showGraph();

@@ -15,6 +15,12 @@ Meteor.startup(function () {
 	}
 
 
+
+	//Mail Chimp
+	MailChimpOptions.apiKey = "f1e91125f04f4724bd321c21b1cfbf34-us7";
+	MailChimpOptions.listId = "960d49c45e";
+
+	//Import BuckeyeTraffic data automatically
 	Fiber = Npm.require('fibers');
 			 setInterval( function ()
 			  { Fiber(function()
@@ -28,6 +34,14 @@ Meteor.startup(function () {
       			});
 			   }).run();
 				}, 30000000 ); //Should be 300000 for 5mins; put large number while devloping
+
+	//Check if there is an issue on Roads Travelled per User
+	setInterval( function ()
+		{ Fiber(function()
+			{
+				//code here
+			}).run();
+		}, 300000000 );
 
 });
 
