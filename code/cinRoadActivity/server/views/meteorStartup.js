@@ -40,8 +40,31 @@ Meteor.startup(function () {
 		{ Fiber(function()
 			{
 				//code here
+				var allUsers = Meteor.users.find().fetch();
+				var userData;
+				var todayDate = new Date();
+				_.each(allUsers, function(userData)
+				{
+					console.log(userData.emails[0].address);
+					var roadsTravelled = RoadsTravelled.find({userId: userData._id}).fetch();
+					_.each(roadsTravelled, function(roadsTravelledData)
+					{
+						var ra = RoadActivity.find({
+							Road: roadsTravelledData.road,
+							startDateTime_ISO: {$lte: new Date()},
+							endDateTime_ISO: {$gte: new Date()},
+							$or: [{ startMile: { $gte: roadsTravelled.startMile }}, { startMile: -999 }],
+							$or: [{ endMile: { $gte: roadsTravelled.endMile }}, { endMile: -999 }]
+						});
+					});
+					
+
+					
+				});
+
+
 			}).run();
-		}, 300000000 );
+		}, 5000 );
 
 });
 
