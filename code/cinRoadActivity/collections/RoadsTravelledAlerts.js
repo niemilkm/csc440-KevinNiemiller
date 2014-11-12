@@ -2,11 +2,41 @@ RoadsTravelledAlerts = new Meteor.Collection('roadsTravelledAlerts');
 
 Meteor.methods({
 	insert_roadsTravelledAlerts: function(data) {
-		RoadsTravelledAlerts.insert({userId: this.userId, road:data.road, monday: data.monday, tuesday: data.tuesday, wednesday: data.wednesday, thursday: data.thursday, friday: data.friday, saturday: data.saturday, sunday: data.sunday, startMile: data.startMile, endMile: data.endMile, startTime: data.startTime, endTime: data.endTime, startTime_display: data.startTime_display, endTime_display: data.endTime_display, days: data.days, startHr: data.startHr, startMin: data.startMin, startampm: data.startampm, endHr: data.endHr, endMin: data.endMin, endampm: data.endampm});
+		RoadsTravelledAlerts.insert({
+																		userId: this.userId,
+																		RoadActivityId: data.RoadActivityId,
+																		RoadsTravelledId: data.RoadsTravelledId,
+																		monday: data.monday,
+																		tuesday: data.tuesday,
+																		wednesday: data.wednesday,
+																		thursday: data.thursday,
+																		friday: data.friday,
+																		saturday: data.saturday,
+																		sunday: data.sunday,
+																		notifiedUser: data.notifiedUser,
+																		dateAdded: data.dateAdded,
+																		dateUpdated: data.dateUpdated,
+																});
 	},
 
 	update_roadsTravelledAlerts: function(data, id) {
-		RoadsTravelledAlerts.update({_id: id}, {$set: {road:data.road, monday: data.monday, tuesday: data.tuesday, wednesday: data.wednesday, thursday: data.thursday, friday: data.friday, saturday: data.saturday, sunday: data.sunday, startMile: data.startMile, endMile: data.endMile, startTime: data.startTime, endTime: data.endTime, startTime_display: data.startTime_display, endTime_display: data.endTime_display, days: data.days, startHr: data.startHr, startMin: data.startMin, startampm: data.startampm, endHr: data.endHr, endMin: data.endMin, endampm: data.endampm}});
+		RoadsTravelledAlerts.update({_id: id},
+																					{$set: {
+																										RoadActivityId: data.RoadActivityId,
+																										RoadsTravelledId: data.RoadsTravelledId,
+																										monday: data.monday,
+																										tuesday: data.tuesday,
+																										wednesday: data.wednesday,
+																										thursday: data.thursday,
+																										friday: data.friday,
+																										saturday: data.saturday,
+																										sunday: data.sunday,
+																										notifiedUser: data.notifiedUser,
+																										dateAdded: data.dateAdded,
+																										dateUpdated: data.dateUpdated,
+																									}
+																					}
+																);
 	},
 
 	delete_roadsTravelledAlerts: function(id) {

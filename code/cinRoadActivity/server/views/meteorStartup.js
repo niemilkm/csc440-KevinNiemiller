@@ -49,22 +49,70 @@ Meteor.startup(function () {
 					var roadsTravelled = RoadsTravelled.find({userId: userData._id}).fetch();
 					_.each(roadsTravelled, function(roadsTravelledData)
 					{
+						if (roadsTravelledData.monday == 'checked')
 						var ra = RoadActivity.find({
 							Road: roadsTravelledData.road,
 							startDateTime_ISO: {$lte: new Date()},
 							endDateTime_ISO: {$gte: new Date()},
 							$or: [{ startMile: { $gte: roadsTravelled.startMile }}, { startMile: -999 }],
 							$or: [{ endMile: { $gte: roadsTravelled.endMile }}, { endMile: -999 }]
-						});
-					});
-					
+						}).fetch();
 
-					
+						var count = 0;
+
+						_.each(ra, function(ra_data)
+						{
+							var monday = false; var tuesday = false; var wednesday = false; var thursday = false; var friday = false; var saturday = false; var sunday = false;
+							var timeEndMinusStartDate = ra_data.endDateTime_ISO - ra_data.startDateTime_ISO;
+							if (timeEndMinusStartDate > 86400000)
+							{
+								monday=true;
+								tuesday=true;
+								wednesday=true;
+								thursday=true;
+								friday=true;
+								saturday=true;
+								sunday=true;
+							}
+							else
+							{
+								var startDayOfWeek = ra_data.startDateTime_ISO.getDay();
+								var endDayOfWeek = ra_data.endDateTime_ISO.getDay();
+								if (endDayOfWeek == 0)
+									endDayOfWeek = 7;
+								for (var i=startDayOfWeek; i<=endDayOfWeek; i++)
+								{
+									if (i==1) {monday=true;}
+									if (i==2) {tuesday=true;}
+									if (i==3) {wednesday=true;}
+									if (i==4) {thursday=true;}
+									if (i==5) {friday=true;}
+									if (i==6) {saturday=true;}
+									if (i==0 || i==7) {sunday=true;}
+								}
+							}
+							var data = [
+															RoadActivityId = ra_data._id,
+															RoadsTravelledId = roadsTravelledData._id,
+															monday = monday,
+															tuesday = tuesday,
+															wednesday = wednesday,
+															thursday = thursday,
+															friday = friday,
+															saturday = saturday,
+															sunday = sunday,
+															notifiedUser = false,
+															dateAdded = new Date(),
+															dateUpdated = new Date()
+													];
+							Meteor.call("insert_roadsTravelledAlerts", data);
+						})
+					});
 				});
 
 
 			}).run();
-		}, 5000 );
+		}, 50000000 );
 
 });
 
