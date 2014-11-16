@@ -11,5 +11,6 @@ Meteor.methods({
 
 	delete_roadData: function(id) {
 		RoadsTravelled.remove({_id: id});
+		Meteor.call("delete_roadsTravelledAlerts", id);
 	}
 });

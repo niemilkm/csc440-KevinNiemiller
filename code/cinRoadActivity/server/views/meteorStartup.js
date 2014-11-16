@@ -25,7 +25,6 @@ Meteor.startup(function () {
 			 setInterval( function ()
 			  { Fiber(function()
 			   {
-			   		console.log("in fiber function");
 			   		Meteor.call("importData", function(error, result){
 			        if (error)
 			          console.log("System Import Data - error in importData: " + error);
@@ -33,7 +32,7 @@ Meteor.startup(function () {
 			          console.log("System Import Data - importData complete");
       			});
 			   }).run();
-				}, 30000000 ); //Should be 300000 for 5mins; put large number while devloping
+				}, 30000000 ); // 300000 = 5mins
 
 	//Check if there is an issue on Roads Travelled per User
 	setInterval( function ()
@@ -45,11 +44,10 @@ Meteor.startup(function () {
 				var todayDate = new Date();
 				_.each(allUsers, function(userData)
 				{
-					console.log(userData.emails[0].address);
 					var roadsTravelled = RoadsTravelled.find({userId: userData._id}).fetch();
 					_.each(roadsTravelled, function(roadsTravelledData)
 					{
-						if (roadsTravelledData.monday == 'checked')
+						//if (roadsTravelledData.monday == 'checked') // WHAT IS THIS??????
 						var ra = RoadActivity.find({
 							Road: roadsTravelledData.road,
 							startDateTime_ISO: {$lte: new Date()},
@@ -58,14 +56,24 @@ Meteor.startup(function () {
 							$or: [{ endMile: { $gte: roadsTravelled.endMile }}, { endMile: -999 }]
 						}).fetch();
 
-						var count = 0;
+						//var count = 0;
 
 						_.each(ra, function(ra_data)
 						{
-							var monday = false; var tuesday = false; var wednesday = false; var thursday = false; var friday = false; var saturday = false; var sunday = false;
-							var timeEndMinusStartDate = ra_data.endDateTime_ISO - ra_data.startDateTime_ISO;
-							if (timeEndMinusStartDate > 86400000)
+							var entryExists = false;
+							if (RoadsTravelledAlerts.find({userId: userData._id, RoadActivityId: ra_data._id}).count() > 0)
 							{
+								entryExists = true;
+								var raa_iD = RoadsTravelledAlerts.findOne({userId: userData._id, RoadActivityId: ra_data._id})._id;
+							}
+							var monday = false; var tuesday = false; var wednesday = false; var thursday = false; var friday = false; var saturday = false; var sunday = false;
+							var timeEndMinusStartDate = ra_data.endDateTime_ISO.getTime() - ra_data.startDateTime_ISO.getTime();
+							console.log("endDateTime_ISO: " + ra_data.endDateTime_ISO.getTime());
+							console.log("startDateTime_ISO: " + ra_data.startDateTime_ISO.getTime());
+							console.log("endDateTime_ISO - startDateTime_ISO: " + timeEndMinusStartDate);
+							if (timeEndMinusStartDate > 518400000) // this is 6 days, so anything over 6 days would be a week
+							{
+								console.log("allDays are true");
 								monday=true;
 								tuesday=true;
 								wednesday=true;
@@ -78,41 +86,115 @@ Meteor.startup(function () {
 							{
 								var startDayOfWeek = ra_data.startDateTime_ISO.getDay();
 								var endDayOfWeek = ra_data.endDateTime_ISO.getDay();
-								if (endDayOfWeek == 0)
-									endDayOfWeek = 7;
+								console.log("startDayOfWeek: " + startDayOfWeek);
+								console.log("endDayOfWeek: " + endDayOfWeek);
+								if (startDayOfWeek > endDayOfWeek)
+									endDayOfWeek += 7;
+								console.log("endDayOfWeek: " + endDayOfWeek);
 								for (var i=startDayOfWeek; i<=endDayOfWeek; i++)
 								{
-									if (i==1) {monday=true;}
-									if (i==2) {tuesday=true;}
-									if (i==3) {wednesday=true;}
-									if (i==4) {thursday=true;}
-									if (i==5) {friday=true;}
-									if (i==6) {saturday=true;}
-									if (i==0 || i==7) {sunday=true;}
+									console.log("i: " + i);
+									if (i==0 || i==7) {console.log("sunday is true"); sunday=true;}
+									if (i==1 || i==8) {monday=true;}
+									if (i==2 || i==9) {tuesday=true;}
+									if (i==3 || i==10) {wednesday=true;}
+									if (i==4 || i==11) {thursday=true;}
+									if (i==5 || i==12) {friday=true;}
+									if (i==6 || i==13) {saturday=true;}
 								}
 							}
-							var data = [
-															RoadActivityId = ra_data._id,
-															RoadsTravelledId = roadsTravelledData._id,
-															monday = monday,
-															tuesday = tuesday,
-															wednesday = wednesday,
-															thursday = thursday,
-															friday = friday,
-															saturday = saturday,
-															sunday = sunday,
-															notifiedUser = false,
-															dateAdded = new Date(),
-															dateUpdated = new Date()
-													];
-							Meteor.call("insert_roadsTravelledAlerts", data);
-						})
+							var data = {
+															userId: userData._id,
+															RoadActivityId: ra_data._id,
+															RoadsTravelledId: roadsTravelledData._id,
+															monday: monday,
+															tuesday: tuesday,
+															wednesday: wednesday,
+															thursday: thursday,
+															friday: friday,
+															saturday: saturday,
+															sunday: sunday,
+															notifiedUser: false,
+															dateAdded: new Date(),
+															dateUpdated: new Date()
+													};
+							if (entryExists)
+								Meteor.call("update_roadsTravelledAlerts", data, raa_iD);
+							else
+								Meteor.call("insert_roadsTravelledAlerts", data);
+							}
+						)
 					});
 				});
 
 
 			}).run();
-		}, 50000000 );
+		}, 110000000 ); // 420000 for 7 min
+
+
+	 setInterval( function ()
+	  { Fiber(function()
+	   {
+	   		var foundActivities = false;
+	   		var lines = "-----------------------------------------------------\n\n";
+	   		var emailBody = "Here are the new notifications for the roads you travel:\n" + lines + "\n";
+	   		var allUsers = Meteor.users.find().fetch();
+				_.each(allUsers, function(userData)
+				{
+					foundActivities = false;
+	   			var raa = RoadsTravelledAlerts.find({userId: userData._id, notifiedUser: false}).fetch();
+	   			_.each(raa, function(raa_data)
+	   			{
+	   				foundActivities = true;
+	   				var activity = RoadActivity.findOne({_id: raa_data.RoadActivityId});
+	   				emailBody = emailBody +
+	   										"Road: " + activity.Road + "\n" +
+	   										"Category: " + activity.Category + "\n" +
+	   										"Activity Start Time: " + activity.startDateTime_ISO + "\n" +
+	   										"Activity End Time: " + activity.endDateTime_ISO + "\n" +
+	   										"Description: " + activity.Description + "\n" +
+	   										"Detour Description: " + activity.DetourDescription + "\n" +
+	   										lines;
+	   				Meteor.call("update_roadsTravelledAlerts_notifiedUser", raa_data._id);
+	   			});
+	   			if (foundActivities)
+	   			{
+	   				Email.send({
+													to: 			"test1@test.test",
+													from: 		"server@test.test",
+													subject: 	"CincyRoadActivity Notification",
+													text: 		emailBody
+											});
+	   			}
+	   		});
+
+	   }).run();
+		}, 13000000 ); // 660000 = 11min
+
+	 setInterval( function ()
+	  { Fiber(function()
+	   {
+	   		var allUsers = Meteor.users.find().fetch();
+	   		var today = new Date();
+	   		_.each(allUsers, function(userData)
+	   		{
+	   			var raa = RoadsTravelledAlerts({userId: userData._id}).fetch();
+	   			_.each(raa, function(raa_data)
+	   			{
+	   				var raa_instance = RoadActivity.find({_id: raa_data.RoadActivityId});
+	   				if (today < raa_instance.startDateTime_ISO || today > raa_instance.endDateTime_ISO)
+	   					Meteor.call("delete_roadsTravelledAlerts", raa_data._id);
+	   			});
+	   		});
+	   }).run();
+		}, 30000000 ); // 780000 = 13min
+
+	 setInterval( function ()
+	  { Fiber(function()
+	   {
+	   		//code here
+	   }).run();
+		}, 30000000 ); //Should be 300000 for 5mins; put large number while devloping
 
 });
 

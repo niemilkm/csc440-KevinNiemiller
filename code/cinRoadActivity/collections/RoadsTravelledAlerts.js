@@ -2,8 +2,9 @@ RoadsTravelledAlerts = new Meteor.Collection('roadsTravelledAlerts');
 
 Meteor.methods({
 	insert_roadsTravelledAlerts: function(data) {
+		console.log("inserting into Roads Travelled Alerts");
 		RoadsTravelledAlerts.insert({
-																		userId: this.userId,
+																		userId: data.userId,
 																		RoadActivityId: data.RoadActivityId,
 																		RoadsTravelledId: data.RoadsTravelledId,
 																		monday: data.monday,
@@ -20,10 +21,9 @@ Meteor.methods({
 	},
 
 	update_roadsTravelledAlerts: function(data, id) {
+		console.log("updating Roads Travelled Alerts");
 		RoadsTravelledAlerts.update({_id: id},
 																					{$set: {
-																										RoadActivityId: data.RoadActivityId,
-																										RoadsTravelledId: data.RoadsTravelledId,
 																										monday: data.monday,
 																										tuesday: data.tuesday,
 																										wednesday: data.wednesday,
@@ -31,9 +31,17 @@ Meteor.methods({
 																										friday: data.friday,
 																										saturday: data.saturday,
 																										sunday: data.sunday,
-																										notifiedUser: data.notifiedUser,
-																										dateAdded: data.dateAdded,
 																										dateUpdated: data.dateUpdated,
+																									}
+																					}
+																);
+	},
+
+	update_roadsTravelledAlerts_notifiedUser: function(id) {
+		console.log("updating Roads Travelled Alerts - notified User");
+		RoadsTravelledAlerts.update({_id: id},
+																					{$set: {
+																										notifiedUser: true
 																									}
 																					}
 																);
