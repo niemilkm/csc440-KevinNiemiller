@@ -48,7 +48,8 @@ Meteor.methods({
 	},
 
 	delete_roadsTravelledAlerts: function(id) {
-		RoadsTravelled.remove({_id: id});
+		RoadsTravelledAlerts.remove({_id: id});
+		console.log("road travelled alert is deleted: " + id);
 	}
 });
 

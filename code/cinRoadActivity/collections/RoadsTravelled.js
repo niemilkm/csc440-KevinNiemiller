@@ -10,7 +10,7 @@ Meteor.methods({
 	},
 
 	delete_roadData: function(id) {
+		Meteor.call("delete_roadsTravelledAlerts", RoadsTravelledAlerts.findOne({RoadsTravelledId: id})._id);
 		RoadsTravelled.remove({_id: id});
-		Meteor.call("delete_roadsTravelledAlerts", id);
 	}
 });
