@@ -99,5 +99,18 @@ Meteor.methods({
 	 												});
 	 	}
 	 	//console.log("insert_data of Road Activity successful");
+	},
+
+	RoadActivity_fetchTravelledAlerts: function()
+	{
+		// var raArray = [];
+		// var count=0;
+		// var rta = RoadsTravelledAlerts.find({userId: this.userId}).fetch();
+		// _.each(rta, function(rta_data)
+		// {
+		// 	raArray[count] = RoadActivity.find({_id: rta_data.RoadActivityId});
+		// 	count++;
+		// });
+		// return raArray;
 	}
 });

@@ -39,6 +39,43 @@
       </div>
     </div>
   </div>
+  <br><br><br><br><br>
+  <div class="container">
+    <div class="page-header">
+      <h1>Roads Travelled Alerts</h1>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row"></div>
+        <div class="row">
+          <table class="table">
+            <tr class="border_bot">
+              {{#each headers}}
+                <th>{{this}}</th>
+              {{/each}}
+            </tr>
+            {{#each roadTravelledAlert}}
+              <tr>
+                <td>{{Category}}</td>
+                <td>{{Status}}</td>
+                <td>{{Direction}}</td>
+                <td>{{Road}}</td>
+                <td>{{ActivityStartDate}} {{ActivityStartTime}}</td>
+                <td>{{ActivityEndDate}} {{ActivityEndTime}}</td>
+                <td>{{StartMileDescription}}</td>
+                <td>{{EndMileDescription}}</td>
+              </tr>
+              <tr><br></tr>
+              <tr class="border_bottom spaceUnder">
+                <td></td>
+                <td colspan="9">{{Description}}</td>
+              </tr>
+            {{/each}}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 
   {{> addRoad}}
   {{> editRoad}}
