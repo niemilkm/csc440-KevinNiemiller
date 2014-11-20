@@ -242,6 +242,7 @@ Template.editRoad.events =
  
     Meteor.call("update_roadData", roadDetails, roadId)
     $('#editRoad').modal('hide');
+    Meteor.call("deleteAlertsAndCallCheckNewAlerts");
   },
 
   'click .editModalClose': function()

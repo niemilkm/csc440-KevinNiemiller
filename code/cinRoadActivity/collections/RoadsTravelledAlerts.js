@@ -50,6 +50,13 @@ Meteor.methods({
 	delete_roadsTravelledAlerts: function(id) {
 		RoadsTravelledAlerts.remove({_id: id});
 		console.log("road travelled alert is deleted: " + id);
+	},
+
+	RoadTravelledAlerts_DeleteAllForUser: function()
+	{
+		RoadsTravelledAlerts.remove({userId: this.userId});
+		console.log("Road Travel Alerts Deleted for User");
 	}
+
 });
 
