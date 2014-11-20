@@ -166,8 +166,8 @@ Meteor.methods({
  			if (foundActivities)
  			{
  				Email.send({
-											to: 			"test1@test.test",
-											from: 		"server@test.test",
+											to: 			userData.emails[0].addresss,
+											from: 		"yourRoadAlerts@cincyRoadActivity.com",
 											subject: 	"CincyRoadActivity Notification",
 											text: 		emailBody
 									});
