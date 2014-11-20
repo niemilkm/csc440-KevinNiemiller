@@ -130,6 +130,7 @@ Template.addRoad.events =
     $('.endTime_min').val('min');
     $('.endTime_ampm').val('AM');
     $('#addRoad').modal('hide');
+    Meteor.call("deleteAlertsAndCallCheckNewAlerts");
   },
 
   'click .modalCloseAdd': function()

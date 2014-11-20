@@ -10,8 +10,11 @@ Meteor.methods({
 	},
 
 	delete_roadData: function(id) {
-		if (RoadsTravelledAlerts.find({RoadsTravelledId: id}).count() > 0)
-			Meteor.call("delete_roadsTravelledAlerts", RoadsTravelledAlerts.findOne({RoadsTravelledId: id})._id);
-		RoadsTravelled.remove({_id: id});
+		RoadsTravelled.remove({_id: id}, function(error)
+			{
+				if (RoadsTravelledAlerts.find({RoadsTravelledId: id}).count() > 0)
+					Meteor.call("deleteAlertsAndCallCheckNewAlerts");
+			});
+		
 	}
 });
