@@ -6,10 +6,6 @@ Template.addFilter.rendered = function()
       source: availableRoads
     });
 
-    $("#startDatepicker").datepicker({
-      defaultDate: 'Enter Start Date'
-    });
-
   };
 
 Template.addFilter.helpers(
@@ -99,6 +95,9 @@ Template.addFilter.events =
     $('.endTime_hr').val('hr');
     $('.endTime_min').val('min');
     $('.endTime_ampm').val('AM');
+    $("#startDatepicker").datepicker().val('Enter Start Date');
+    $("#endDatepicker").datepicker().val('Enter End Date');
+    $('.filterColor').val('Color');
     $('#addFilter').modal('hide');
     Session.set("updateGraph", true);
   },
