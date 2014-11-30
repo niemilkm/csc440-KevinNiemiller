@@ -26,7 +26,7 @@ Meteor.startup(function () {
 			          console.log("System Import Data - importData complete");
       			});
 			   }).run();
-				}, 300000 ); // 300000 = 5mins
+				}, 30000 ); // 300000 = 5mins
 
 	//Check if there is an issue on Roads Travelled per User
 	setInterval( function ()
@@ -35,7 +35,7 @@ Meteor.startup(function () {
 				Meteor.call("checkRoadActivityToSeeIfNewAlertIsNeeded");
 				console.log("checked Road Activity to see if New Alert is Needed");
 			}).run();
-		}, 420000 ); // 420000 for 7 min
+		}, 45000 ); // 420000 for 7 min
 
 
 	 setInterval( function ()
@@ -44,7 +44,7 @@ Meteor.startup(function () {
 	   		Meteor.call("sendEmailWithAnyNewAlerts");
 	   		console.log("checked if email sending for alerts was needed");
 	   }).run();
-		}, 660000 ); // 660000 = 11min
+		}, 60000 ); // 660000 = 11min
 
 	 setInterval( function ()
 	  { Fiber(function()
@@ -52,7 +52,7 @@ Meteor.startup(function () {
 	   		Meteor.call("removeOldAlertsBasedOnDate");
 	   		console.log("checked to see if any alerts should be removed");
 	   }).run();
-		}, 780000 ); // 780000 = 13min
+		}, 75000 ); // 780000 = 13min
 
 
 });
