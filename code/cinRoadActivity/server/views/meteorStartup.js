@@ -185,8 +185,6 @@ Meteor.methods({
  			_.each(raa, function(raa_data)
  			{
  				var raa_instance = RoadActivity.findOne({_id: raa_data.RoadActivityId});
- 				console.log("raa id: " + raa_data._id);
- 				console.log("today, startDateTime_ISO, endDateTime_ISO: " + today + ", " + raa_instance.startDateTime_ISO + ", " + raa_instance.endDateTime_ISO);
  				if (today < raa_instance.startDateTime_ISO || today > raa_instance.endDateTime_ISO)
  					Meteor.call("delete_roadsTravelledAlerts", raa_data._id);
  			});
