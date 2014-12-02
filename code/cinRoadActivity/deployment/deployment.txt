@@ -1,0 +1,1 @@
+The deployment file is a directory up. It is called meteoric.sh and the config file for this is called meteoric.config.sh. This was created during iteration 1, and to avoid redoing work for this iteration, I left the file where it is.
